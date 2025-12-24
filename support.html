@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Support Center - FinTechApp</title>
+    <link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom styles for details/summary animation */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#181811] dark:text-white min-h-screen flex flex-col">
+    <!-- TopNavBar -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-[#1a1a0d] border-b border-[#f5f5f0] dark:border-[#333320]">
+        <div class="layout-container flex w-full justify-center">
+            <div class="px-4 md:px-10 py-3 w-full max-w-[1200px] flex items-center justify-between">
+                <div class="flex items-center gap-4 md:gap-8">
+                    <div class="flex items-center gap-3 text-[#181811] dark:text-white">
+                        <div
+                            class="flex size-10 items-center justify-center rounded-lg bg-primary text-black font-bold text-xl">
+                            F
+                        </div>
+                        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">FinTechApp
+                            Support</h2>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-9">
+                        <a class="text-[#181811] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors"
+                            href="index.html">Consumer</a>
+                        <a class="text-[#181811] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors"
+                            href="business.html">Business</a>
+                        <a class="text-[#181811] dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors"
+                            href="investments.html">Invest</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <button id="notificationBtn"
+                            class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-main dark:text-white relative">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="absolute top-2 right-2 flex h-2 w-2">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                        </button>
+                        <!-- Notification Dropdown -->
+                        <div id="notificationDropdown"
+                            class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-surface-dark rounded-xl shadow-2xl border border-[#e6e6db] dark:border-gray-700 overflow-hidden z-[60] text-text-main">
+                            <div
+                                class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                                <h4 class="font-bold">Notifications</h4>
+                                <button class="text-xs text-primary font-bold">Mark all as read</button>
+                            </div>
+                            <div class="max-h-96 overflow-y-auto">
+                                <div
+                                    class="p-4 hover:bg-[#f5f5f0] dark:hover:bg-gray-800 cursor-pointer border-b border-gray-50 dark:border-gray-700/50">
+                                    <p class="text-sm font-bold">Support Ticket Update</p>
+                                    <p class="text-xs text-text-muted mt-1">Your ticket #8892 has been resolved. Please
+                                        rate our service.</p>
+                                    <p class="text-[10px] text-text-muted mt-2 uppercase font-bold">2 hours ago</p>
+                                </div>
+                            </div>
+                            <a href="#"
+                                class="block p-3 text-center text-sm font-bold bg-[#f5f5f0] dark:bg-gray-800 hover:text-primary transition-colors">See
+                                all notifications</a>
+                        </div>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2">
+                        <span class="text-sm font-medium">Hello, Rahul</span>
+                        <div class="bg-gray-200 dark:bg-gray-700 rounded-full p-1">
+                            <span class="material-symbols-outlined text-gray-600 dark:text-gray-300">person</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Container -->
+    <div class="flex-1 flex flex-col items-center w-full">
+        <div class="w-full max-w-[960px] px-4 md:px-6">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap gap-2 py-6">
+                <a class="text-[#8a8a60] dark:text-gray-400 text-sm font-medium hover:underline"
+                    href="index.html">Home</a>
+                <span class="text-[#8a8a60] dark:text-gray-400 text-sm font-medium">/</span>
+                <span class="text-[#181811] dark:text-white text-sm font-medium">24/7 Help &amp; Support</span>
+            </div>
+            <!-- Hero Section -->
+            <div class="@container mb-10">
+                <div class="flex min-h-[320px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-8 relative overflow-hidden"
+                    data-alt="Blue abstract geometric pattern background with soft gradients"
+                    style='background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcjdQrNdHzYvdnR_TtK7wLXRjpfbG4Aaa7NGKRIwfKmC-avTYk4OPYzgFdPMe2HmsX6afX0JdgY1x0S30Smu4nvFT3imbDzBMpjY3ZncgGFHAgwlqDqfcvAMz3z9spAs6uuQzezHKl5mC87hlnUhmcWG9Ba1pljBtfu54zt4iW5-gTnQ3pIRuTG_3FibRfGl5OYzYiAM9qOefngjKFVKQeFN9vqFzhqB7fGvFM3_rJz7I-iN2xzyM_MnFtalcYjmb7rILaOIviUEU");'>
+                    <div class="flex flex-col gap-3 text-center z-10 max-w-2xl">
+                        <h1 class="text-white text-3xl md:text-5xl font-extrabold leading-tight tracking-[-0.033em]">
+                            How can we help you?
+                        </h1>
+                        <p class="text-gray-200 text-base md:text-lg">
+                            Find answers to your questions, browse guides, or get in touch with our support team.
+                        </p>
+                    </div>
+                    <label class="flex flex-col w-full max-w-[560px] h-14 md:h-16 z-10 mt-4 shadow-lg">
+                        <div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-white overflow-hidden">
+                            <div class="text-[#8a8a60] flex items-center justify-center pl-4 pr-2">
+                                <span class="material-symbols-outlined">search</span>
+                            </div>
+                            <input
+                                class="flex w-full min-w-0 flex-1 border-none bg-white text-[#181811] focus:outline-0 focus:ring-0 h-full placeholder:text-[#8a8a60] px-2 text-base"
+                                placeholder="Search for issues like 'failed transaction' or 'KYC'..." value="" />
+                            <div class="flex items-center justify-center pr-2 py-2">
+                                <button
+                                    class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-full px-5 bg-primary hover:bg-yellow-400 transition-colors text-[#181811] text-sm font-bold tracking-[0.015em]">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <!-- Recent Orders (Contextual Help) -->
+            <section class="mb-12">
+                <div class="flex items-center justify-between mb-5">
+                    <h2 class="text-[#181811] dark:text-white text-xl md:text-2xl font-bold tracking-tight">Recent
+                        Transactions</h2>
+                    <a class="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                        href="transactions.html">View All</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <!-- Transaction Item 1 -->
+                    <div
+                        class="bg-white dark:bg-[#1a1a0d] border border-[#f5f5f0] dark:border-[#333320] rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="size-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <span class="material-symbols-outlined">shopping_bag</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[#181811] dark:text-white">Starbucks Coffee</h3>
+                                <p class="text-sm text-[#8a8a60] dark:text-gray-400">Today, 10:23 AM • UPI Ref: 3948201
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                            <span class="font-bold text-lg text-[#181811] dark:text-white">₹ 350.00</span>
+                            <button
+                                class="bg-primary/20 hover:bg-primary/40 text-[#181811] dark:text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors">
+                                Need Help?
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Transaction Item 2 -->
+                    <div
+                        class="bg-white dark:bg-[#1a1a0d] border border-[#f5f5f0] dark:border-[#333320] rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="size-12 rounded-full bg-red-50 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">
+                                <span class="material-symbols-outlined">warning</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-[#181811] dark:text-white">Jio Mobile Recharge (Failed)</h3>
+                                <p class="text-sm text-[#8a8a60] dark:text-gray-400">Yesterday, 06:45 PM • Order ID:
+                                    882910</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                            <span class="font-bold text-lg text-[#181811] dark:text-white">₹ 719.00</span>
+                            <button
+                                class="bg-red-100 hover:bg-red-200 text-red-800 dark:bg-red-900/50 dark:text-red-200 px-4 py-2 rounded-lg text-sm font-bold transition-colors">
+                                Report Issue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Browse Categories Grid -->
+            <section class="mb-12">
+                <h2 class="text-[#181811] dark:text-white text-xl md:text-2xl font-bold tracking-tight mb-5">Browse by
+                    Category</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Card 1 -->
+                    <div class="group cursor-pointer flex flex-col gap-3">
+                        <div
+                            class="w-full aspect-square rounded-xl bg-gray-100 dark:bg-[#1a1a0d] flex items-center justify-center overflow-hidden relative border border-transparent hover:border-primary transition-all">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Abstract colorful gradient with blue and cyan tones"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBKwjHU2sOIGKJuGWizqEZqDj9LWSGXzaqGID38Z5NZaoxDf1ayF-M5AFg1N-U31MmSZ4jBYZ3LSyZ2E6Z1ZD1d2Bu17vS_iL0j2UQofHZ2I_6jFfPn0B0PdLCjTkFnLXVzbpxX0_hVr0jlgz2bGQzgrYz3a4v_CIDkmRzRwXP0v5vJVF3lRBjx5c7LVKFlTQTraHi6ohOdwI8eZfNHeqkQE7u6KpAAff89lfRZn7N3xVzkH0vArJ2Bw4Drhk6dRNexyj3yVjUIxA");'>
+                            </div>
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                            <div class="relative bg-white dark:bg-black p-3 rounded-full shadow-md text-blue-600">
+                                <span class="material-symbols-outlined text-3xl">smartphone</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p
+                                class="text-[#181811] dark:text-white text-base font-bold leading-normal group-hover:text-primary-dark transition-colors">
+                                Recharge &amp; Payments</p>
+                            <p class="text-[#8a8a60] dark:text-gray-400 text-sm font-normal">Mobile, DTH, electricity
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="group cursor-pointer flex flex-col gap-3">
+                        <div
+                            class="w-full aspect-square rounded-xl bg-gray-100 dark:bg-[#1a1a0d] flex items-center justify-center overflow-hidden relative border border-transparent hover:border-primary transition-all">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Abstract gradient background with purple and pink colors"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADIDhMyfuCLwTznfEr3cT4j5DFINo4Ws8t8wwzcVlPc9_WGB_KASrbYNbGkJlZ1qqsEYuzBywp4CaOT_gMCy5hbwFgH89CoJRE7M95R-IsIWMgbMYA_xgnzrDyoFCgCgX65AhQnNy8iIjoeEQMdIzAy7YoUslj4HtOHfInBWEHIr0diYrDDalNIRcJP-heEPDvXVccggoWux43z3Jl0EWm4fNkK6AfUYfkS-wCEomApp0JR0cl7-I95_OqZ27MKEK1jTTzgjfHWw4");'>
+                            </div>
+                            <div class="relative bg-white dark:bg-black p-3 rounded-full shadow-md text-purple-600">
+                                <span class="material-symbols-outlined text-3xl">account_balance</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181811] dark:text-white text-base font-bold leading-normal">Bank Transfers
+                            </p>
+                            <p class="text-[#8a8a60] dark:text-gray-400 text-sm font-normal">UPI, NEFT, IMPS</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="group cursor-pointer flex flex-col gap-3">
+                        <div
+                            class="w-full aspect-square rounded-xl bg-gray-100 dark:bg-[#1a1a0d] flex items-center justify-center overflow-hidden relative border border-transparent hover:border-primary transition-all">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Abstract gradient background with green and teal colors"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOnr8VnpfgUIf8TG_4GV7KAJFHWy_dBUZR6Us359dNg4SCaNgJxSgGIOEqcZvJxxw-4GzHfUuMRPJs9l_SblZTUZ4IC0QK1ADG6PBtnwAIYueiKqQDy6gThTUgMMygO2w9wRgcem-BmmPIEHFU0utxrR5ESg1DHgitA7qwQDXpUJDuNSRfuBqRKLwl5pkO3LMAbseeqtVDEZV0ZeCaCt8lZH2O5ySIIhd52YADl2FbtfbOWvNNLuy8tXEXOnfVzZbA6K9R_BvBmMY");'>
+                            </div>
+                            <div class="relative bg-white dark:bg-black p-3 rounded-full shadow-md text-green-600">
+                                <span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181811] dark:text-white text-base font-bold leading-normal">Wallet &amp;
+                                KYC</p>
+                            <p class="text-[#8a8a60] dark:text-gray-400 text-sm font-normal">Add money, Upgrade</p>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="group cursor-pointer flex flex-col gap-3">
+                        <div
+                            class="w-full aspect-square rounded-xl bg-gray-100 dark:bg-[#1a1a0d] flex items-center justify-center overflow-hidden relative border border-transparent hover:border-primary transition-all">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Abstract gradient background with orange and red colors"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwoCgc7UAp15F-eVkzs8j4RcdSS9fM0pfPwGVRC8pe1I_LyYD-IU-T-RynHi08dq3FUl5bskef6S8PtEXcYV2wr1ZauuOgVRLfxOkRFDRMgLHk_5TdRIKFFNrriS4fpnIADX_nNXHuS7eYYfBnea0hsmEbEaFXddhY6qKv-Q4zg6hB8EGH9_TIO3TSTEhCGoF4bop9YJzTeGZB9wpPoObgbDY88xEFChYfPxxW-3ubAZPw_uNKpdz_dvSBVv9yVTr3fl1YV-3lTSE");'>
+                            </div>
+                            <div class="relative bg-white dark:bg-black p-3 rounded-full shadow-md text-orange-600">
+                                <span class="material-symbols-outlined text-3xl">security</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[#181811] dark:text-white text-base font-bold leading-normal">Security &amp;
+                                Fraud</p>
+                            <p class="text-[#8a8a60] dark:text-gray-400 text-sm font-normal">Report issues</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Top Questions FAQ -->
+            <section class="mb-12">
+                <h2 class="text-[#181811] dark:text-white text-xl md:text-2xl font-bold tracking-tight mb-5">Top
+                    Questions</h2>
+                <div class="flex flex-col gap-3">
+                    <details
+                        class="group bg-white dark:bg-[#1a1a0d] rounded-xl border border-[#f5f5f0] dark:border-[#333320] overflow-hidden">
+                        <summary
+                            class="flex cursor-pointer items-center justify-between p-4 md:p-5 font-bold text-[#181811] dark:text-white hover:bg-gray-50 dark:hover:bg-[#2a2a1a] transition-colors">
+                            <span>How do I link my bank account?</span>
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-5 pb-5 pt-0 text-[#8a8a60] dark:text-gray-300 leading-relaxed">
+                            <p>To link your bank account, go to the 'Profile' section, select 'Payment Settings', and
+                                click on 'Saved Payment Details'. Choose 'Add New Bank Account', select your bank from
+                                the list, and verify via SMS.</p>
+                        </div>
+                    </details>
+                    <details
+                        class="group bg-white dark:bg-[#1a1a0d] rounded-xl border border-[#f5f5f0] dark:border-[#333320] overflow-hidden">
+                        <summary
+                            class="flex cursor-pointer items-center justify-between p-4 md:p-5 font-bold text-[#181811] dark:text-white hover:bg-gray-50 dark:hover:bg-[#2a2a1a] transition-colors">
+                            <span>Why is my transaction pending?</span>
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-5 pb-5 pt-0 text-[#8a8a60] dark:text-gray-300 leading-relaxed">
+                            <p>Transactions may be pending due to network issues with the bank. Usually, these are
+                                resolved within 24-48 hours. If the amount was deducted but the transaction failed, it
+                                will be automatically refunded.</p>
+                        </div>
+                    </details>
+                    <details
+                        class="group bg-white dark:bg-[#1a1a0d] rounded-xl border border-[#f5f5f0] dark:border-[#333320] overflow-hidden">
+                        <summary
+                            class="flex cursor-pointer items-center justify-between p-4 md:p-5 font-bold text-[#181811] dark:text-white hover:bg-gray-50 dark:hover:bg-[#2a2a1a] transition-colors">
+                            <span>How to complete KYC?</span>
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-5 pb-5 pt-0 text-[#8a8a60] dark:text-gray-300 leading-relaxed">
+                            <p>You can complete your KYC by visiting a nearby KYC point or through Video KYC on the app.
+                                Ensure you have your PAN card and Aadhaar card ready for the process.</p>
+                        </div>
+                    </details>
+                    <details
+                        class="group bg-white dark:bg-[#1a1a0d] rounded-xl border border-[#f5f5f0] dark:border-[#333320] overflow-hidden">
+                        <summary
+                            class="flex cursor-pointer items-center justify-between p-4 md:p-5 font-bold text-[#181811] dark:text-white hover:bg-gray-50 dark:hover:bg-[#2a2a1a] transition-colors">
+                            <span>How to reset my password?</span>
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                        </summary>
+                        <div class="px-5 pb-5 pt-0 text-[#8a8a60] dark:text-gray-300 leading-relaxed">
+                            <p>Go to the login screen and click on 'Forgot Password'. Enter your registered mobile
+                                number to receive an OTP. Verify the OTP and set a new password.</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+            <!-- Contact Options -->
+            <section class="mb-16">
+                <h2 class="text-[#181811] dark:text-white text-xl md:text-2xl font-bold tracking-tight mb-5">Still need
+                    help?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- Chat -->
+                    <div
+                        class="bg-primary/10 dark:bg-primary/5 rounded-xl p-6 flex flex-col items-center text-center gap-3 border border-primary/20">
+                        <div
+                            class="size-12 rounded-full bg-primary flex items-center justify-center text-[#181811] mb-2">
+                            <span class="material-symbols-outlined">chat</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-[#181811] dark:text-white">24/7 Chat Support</h3>
+                        <p class="text-sm text-[#8a8a60] dark:text-gray-400">Get instant answers from our automated
+                            assistant or chat with an agent.</p>
+                        <button
+                            class="mt-2 text-sm font-bold underline decoration-2 decoration-primary underline-offset-4 hover:text-primary transition-colors text-[#181811] dark:text-white">Start
+                            Chat</button>
+                    </div>
+                    <!-- Email -->
+                    <div
+                        class="bg-white dark:bg-[#1a1a0d] rounded-xl p-6 flex flex-col items-center text-center gap-3 border border-[#f5f5f0] dark:border-[#333320]">
+                        <div
+                            class="size-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-[#181811] dark:text-white mb-2">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-[#181811] dark:text-white">Email Us</h3>
+                        <p class="text-sm text-[#8a8a60] dark:text-gray-400">Send us your query and we'll get back to
+                            you within 24 hours.</p>
+                        <button
+                            class="mt-2 text-sm font-bold underline decoration-2 decoration-gray-300 underline-offset-4 hover:decoration-primary transition-all text-[#181811] dark:text-white">care@fintechapp.com</button>
+                    </div>
+                    <!-- Call -->
+                    <div
+                        class="bg-white dark:bg-[#1a1a0d] rounded-xl p-6 flex flex-col items-center text-center gap-3 border border-[#f5f5f0] dark:border-[#333320]">
+                        <div
+                            class="size-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-[#181811] dark:text-white mb-2">
+                            <span class="material-symbols-outlined">call</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-[#181811] dark:text-white">Call Us</h3>
+                        <p class="text-sm text-[#8a8a60] dark:text-gray-400">Speak directly to our customer service
+                            executives.</p>
+                        <button
+                            class="mt-2 text-sm font-bold underline decoration-2 decoration-gray-300 underline-offset-4 hover:decoration-primary transition-all text-[#181811] dark:text-white">1800-123-4567</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Footer / Feedback -->
+    <div class="w-full bg-white dark:bg-[#1a1a0d] border-t border-[#f5f5f0] dark:border-[#333320] py-8">
+        <div class="layout-container flex justify-center">
+            <div class="w-full max-w-[960px] px-4 flex flex-col items-center gap-4">
+                <p class="font-bold text-[#181811] dark:text-white">Was this page helpful?</p>
+                <div class="flex gap-4">
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <span class="material-symbols-outlined text-green-600 text-xl">thumb_up</span>
+                        <span class="text-sm font-medium text-[#181811] dark:text-gray-300">Yes</span>
+                    </button>
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <span class="material-symbols-outlined text-red-600 text-xl">thumb_down</span>
+                        <span class="text-sm font-medium text-[#181811] dark:text-gray-300">No</span>
+                    </button>
+                </div>
+                <div class="mt-6 text-center">
+                    <p class="text-xs text-[#8a8a60]">© 2023 FinTechApp Financial Services. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Notification Toggle
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+
+        if (notificationBtn && notificationDropdown) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('hidden');
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                    notificationDropdown.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

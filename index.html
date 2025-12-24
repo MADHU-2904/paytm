@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTechApp - Payment, Recharge, Bill Payment, Bank &amp; Investments</title>
+    <link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2a2a1a",
+                        "text-main": "#181811",
+                        "text-muted": "#8a8a60",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Custom scrollbar hide for carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Top Navigation Bar -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark px-6 py-3 lg:px-10 shadow-sm">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-text-main dark:text-white">
+                    <div
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-black font-bold text-xl">
+                        F
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight">FinTechApp</h1>
+                </div>
+                <!-- Search Bar (Desktop) -->
+                <label class="hidden lg:flex flex-col min-w-40 !h-10 w-96">
+                    <div
+                        class="flex w-full flex-1 items-stretch rounded-lg h-full ring-1 ring-[#e6e6db] dark:ring-gray-600 focus-within:ring-2 focus-within:ring-primary overflow-hidden">
+                        <div
+                            class="text-text-muted flex bg-[#f5f5f0] dark:bg-gray-800 items-center justify-center pl-4 border-r-0">
+                            <span class="material-symbols-outlined">search</span>
+                        </div>
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-main dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f5f5f0] dark:bg-gray-800 focus:border-none h-full placeholder:text-text-muted px-4 pl-2 text-sm font-normal leading-normal"
+                            placeholder="Search for bills, products..." value="" />
+                    </div>
+                </label>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-8">
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="text-text-main dark:text-gray-200 text-sm font-bold border-b-2 border-primary"
+                        href="index.html">Consumer</a>
+                    <a class="text-text-main dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors"
+                        href="business.html">Business</a>
+                    <a class="text-text-main dark:text-gray-200 text-sm font-medium hover:text-primary transition-colors"
+                        href="investments.html">Invest</a>
+                </nav>
+                <div class="flex gap-3">
+                    <div class="relative">
+                        <button id="notificationBtn"
+                            class="flex items-center justify-center rounded-full h-10 w-10 bg-[#f5f5f0] dark:bg-gray-800 text-text-main dark:text-white hover:bg-primary/20 transition-colors relative">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="absolute top-2 right-2 flex h-2 w-2">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                        </button>
+                        <!-- Notification Dropdown -->
+                        <div id="notificationDropdown"
+                            class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-surface-dark rounded-xl shadow-2xl border border-[#e6e6db] dark:border-gray-700 overflow-hidden z-[60]">
+                            <div
+                                class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                                <h4 class="font-bold">Notifications</h4>
+                                <button class="text-xs text-primary font-bold">Mark all as read</button>
+                            </div>
+                            <div class="max-h-96 overflow-y-auto">
+                                <div
+                                    class="p-4 hover:bg-[#f5f5f0] dark:hover:bg-gray-800 cursor-pointer border-b border-gray-50 dark:border-gray-700/50">
+                                    <p class="text-sm font-bold">New Offer Unlocked!</p>
+                                    <p class="text-xs text-text-muted mt-1">Get $20 cashback on your next recharge. Tap
+                                        to claim.</p>
+                                    <p class="text-[10px] text-text-muted mt-2 uppercase font-bold">2 mins ago</p>
+                                </div>
+                                <div
+                                    class="p-4 hover:bg-[#f5f5f0] dark:hover:bg-gray-800 cursor-pointer border-b border-gray-50 dark:border-gray-700/50">
+                                    <p class="text-sm font-bold text-green-600">Refund Successful</p>
+                                    <p class="text-xs text-text-muted mt-1">Refund of $45.00 for order #8812 has been
+                                        credited to your wallet.</p>
+                                    <p class="text-[10px] text-text-muted mt-2 uppercase font-bold">1 hour ago</p>
+                                </div>
+                                <div
+                                    class="p-4 hover:bg-[#f5f5f0] dark:hover:bg-gray-800 cursor-pointer border-b border-gray-50 dark:border-gray-700/50">
+                                    <p class="text-sm font-bold">Business Verified!</p>
+                                    <p class="text-xs text-text-muted mt-1">Your merchant account is now active. Start
+                                        accepting payments.</p>
+                                    <p class="text-[10px] text-text-muted mt-2 uppercase font-bold">Just now</p>
+                                </div>
+                            </div>
+                            <a href="#"
+                                class="block p-3 text-center text-sm font-bold bg-[#f5f5f0] dark:bg-gray-800 hover:text-primary transition-colors">See
+                                all notifications</a>
+                        </div>
+                    </div>
+                    <a href="dashboard.html"
+                        class="flex items-center justify-center gap-2 rounded-full h-10 px-4 bg-primary text-black font-bold text-sm hover:brightness-105 transition-all">
+                        <span>Sign In</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col items-center w-full py-6 lg:py-10 px-4 lg:px-0">
+            <div class="w-full max-w-[1200px] flex flex-col gap-8">
+                <!-- Hero Section & Quick Actions -->
+                <section class="grid grid-cols-1 md:grid-cols-12 gap-6 w-full px-4 lg:px-0">
+                    <!-- Left: Promotional Banner -->
+                    <div
+                        class="md:col-span-8 relative rounded-2xl overflow-hidden bg-black text-white min-h-[280px] flex flex-col justify-center p-8 lg:p-12 shadow-lg group">
+                        <!-- Abstract Background -->
+                        <div class="absolute inset-0 z-0 bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700"
+                            data-alt="Abstract 3D shapes representing blockchain and finance with dark blue tones"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDF5DbMerk-XD75MPprzGvh1DLu5CaZvVin751ERDfkBnVJ679N0fW6YmPOc_wr66WMLj5aMGlSUrQFjes_401DNnik5-zw4CgOxB6Di-MsovBJlpd_HmAGnIfXrRgKvPjxOQGRsLS2Gg8zHXCmcWaQ_rszj8lifgLtKv2AVgA6Hv6iO0iKx-IeQVYi51BYPcaaTc497-4uHzEtrSgoSsViAr_Y0y_mEn3sWbNW74_l1wm59PC5RhpKRaw_k666HJ5CD11--WcV0BM");'>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent z-0">
+                        </div>
+                        <div class="relative z-10 max-w-lg">
+                            <span
+                                class="inline-block px-3 py-1 rounded bg-primary text-black text-xs font-bold mb-4 uppercase tracking-wider">New
+                                Offer</span>
+                            <h1 class="text-3xl lg:text-4xl font-extrabold mb-4 leading-tight">Get 5% Cashback on your
+                                first utility bill</h1>
+                            <p class="text-gray-300 mb-6 text-lg">Pay electricity, water, or gas bills securely and save
+                                money instantly.</p>
+                            <button
+                                class="bg-primary text-black px-6 py-3 rounded-lg font-bold hover:bg-white transition-colors flex items-center gap-2 w-fit">
+                                Pay Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Right: Quick Transfer / Wallet -->
+                    <div
+                        class="md:col-span-4 bg-surface-light dark:bg-surface-dark border border-[#e6e6db] dark:border-gray-700 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold">Quick Actions</h3>
+                                <span class="material-symbols-outlined text-primary">qr_code_scanner</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button
+                                    class="flex flex-col items-center justify-center p-4 rounded-xl bg-[#f5f5f0] dark:bg-gray-800 hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors group">
+                                    <div
+                                        class="bg-primary text-black p-2 rounded-full mb-2 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined">send_to_mobile</span>
+                                    </div>
+                                    <span class="text-sm font-bold">To Mobile</span>
+                                </button>
+                                <button
+                                    class="flex flex-col items-center justify-center p-4 rounded-xl bg-[#f5f5f0] dark:bg-gray-800 hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors group">
+                                    <div
+                                        class="bg-primary text-black p-2 rounded-full mb-2 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined">account_balance</span>
+                                    </div>
+                                    <span class="text-sm font-bold">To Bank</span>
+                                </button>
+                                <button
+                                    class="flex flex-col items-center justify-center p-4 rounded-xl bg-[#f5f5f0] dark:bg-gray-800 hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors group">
+                                    <div
+                                        class="bg-primary text-black p-2 rounded-full mb-2 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined">person</span>
+                                    </div>
+                                    <span class="text-sm font-bold">To Self</span>
+                                </button>
+                                <button
+                                    class="flex flex-col items-center justify-center p-4 rounded-xl bg-[#f5f5f0] dark:bg-gray-800 hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors group">
+                                    <div
+                                        class="bg-primary text-black p-2 rounded-full mb-2 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined">history</span>
+                                    </div>
+                                    <span class="text-sm font-bold">History</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-text-muted font-medium">Wallet Balance</span>
+                                <span class="text-lg font-extrabold text-text-main dark:text-white">$12,450.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Utility Services Grid -->
+                <section class="w-full px-4 lg:px-0">
+                    <div class="flex items-center justify-between px-2 mb-4">
+                        <h2
+                            class="text-[#181811] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">
+                            Recharge &amp; Bill Payments</h2>
+                        <a class="text-sm font-bold text-text-muted hover:text-primary transition-colors" href="#">View
+                            All</a>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+                        <!-- Item 1 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">smartphone</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">
+                                Mobile Prepaid</h2>
+                        </div>
+                        <!-- Item 2 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">lightbulb</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">
+                                Electricity</h2>
+                        </div>
+                        <!-- Item 3 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">satellite_alt</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">DTH
+                            </h2>
+                        </div>
+                        <!-- Item 4 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">credit_card</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">
+                                Credit Card</h2>
+                        </div>
+                        <!-- Item 5 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">local_fire_department</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">Gas
+                                Piped</h2>
+                        </div>
+                        <!-- Item 6 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">router</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">
+                                Broadband</h2>
+                        </div>
+                        <!-- Item 7 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">train</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">Metro
+                            </h2>
+                        </div>
+                        <!-- Item 8 -->
+                        <div
+                            class="flex flex-col gap-3 rounded-lg border border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark p-4 items-center hover:shadow-md hover:border-primary cursor-pointer transition-all group">
+                            <div class="text-text-main dark:text-white group-hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-3xl">apps</span>
+                            </div>
+                            <h2 class="text-text-main dark:text-white text-sm font-bold leading-tight text-center">All
+                                Services</h2>
+                        </div>
+                    </div>
+                </section>
+                <!-- Quick Recharge Input -->
+                <section class="w-full px-4 lg:px-0">
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark rounded-xl border border-[#e6e6db] dark:border-gray-700 p-6 flex flex-col md:flex-row gap-6 items-end shadow-sm">
+                        <div class="flex-1 w-full">
+                            <h3 class="text-text-main dark:text-white text-lg font-bold mb-4">Quick Mobile Recharge</h3>
+                            <div class="flex gap-4 flex-col md:flex-row">
+                                <label class="flex flex-col min-w-40 flex-1">
+                                    <span class="text-text-muted text-xs font-bold uppercase mb-2">Mobile Number</span>
+                                    <div class="relative">
+                                        <input
+                                            class="form-input w-full rounded-lg text-text-main dark:text-white bg-white dark:bg-gray-800 border border-[#e6e6db] dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 font-medium"
+                                            placeholder="Enter 10 digit number" value="" />
+                                    </div>
+                                </label>
+                                <label class="flex flex-col min-w-40 flex-1">
+                                    <span class="text-text-muted text-xs font-bold uppercase mb-2">Operator</span>
+                                    <div class="relative h-12">
+                                        <select
+                                            class="form-select w-full h-full rounded-lg text-text-main dark:text-white bg-white dark:bg-gray-800 border border-[#e6e6db] dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary px-4 font-medium">
+                                            <option>Select Operator</option>
+                                            <option>AT&amp;T</option>
+                                            <option>Verizon</option>
+                                            <option>T-Mobile</option>
+                                        </select>
+                                    </div>
+                                </label>
+                                <label class="flex flex-col min-w-40 w-full md:w-32">
+                                    <span class="text-text-muted text-xs font-bold uppercase mb-2">Amount</span>
+                                    <input
+                                        class="form-input w-full rounded-lg text-text-main dark:text-white bg-white dark:bg-gray-800 border border-[#e6e6db] dark:border-gray-600 focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 font-medium"
+                                        placeholder="$" value="" />
+                                </label>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full md:w-auto h-12 bg-primary text-black font-bold px-8 rounded-lg hover:brightness-105 transition-all whitespace-nowrap">
+                            Proceed to Recharge
+                        </button>
+                    </div>
+                </section>
+                <!-- Banking & Investments Split -->
+                <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full px-4 lg:px-0">
+                    <!-- Banking Column -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold">Banking &amp; Finance</h2>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Card 1 -->
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl border border-[#e6e6db] dark:border-gray-700 hover:shadow-lg transition-shadow">
+                                <div
+                                    class="h-10 w-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center text-green-700 dark:text-green-300 mb-4">
+                                    <span class="material-symbols-outlined">savings</span>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">Savings Account</h3>
+                                <p class="text-sm text-text-muted mb-4">Zero balance account with up to 4% interest.</p>
+                                <a class="text-sm font-bold text-text-main dark:text-white border-b-2 border-primary pb-0.5 hover:text-primary transition-colors"
+                                    href="wallet.html">Open Now</a>
+                            </div>
+                            <!-- Card 2 -->
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark p-5 rounded-xl border border-[#e6e6db] dark:border-gray-700 hover:shadow-lg transition-shadow">
+                                <div
+                                    class="h-10 w-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-700 dark:text-blue-300 mb-4">
+                                    <span class="material-symbols-outlined">real_estate_agent</span>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1">Personal Loan</h3>
+                                <p class="text-sm text-text-muted mb-4">Instant approval up to $50,000.</p>
+                                <a class="text-sm font-bold text-text-main dark:text-white border-b-2 border-primary pb-0.5 hover:text-primary transition-colors"
+                                    href="loans.html">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Investment Column -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold">Investments</h2>
+                            <span
+                                class="text-xs bg-primary/20 text-black dark:text-primary px-2 py-1 rounded font-bold">Grow
+                                your wealth</span>
+                        </div>
+                        <div
+                            class="bg-surface-light dark:bg-surface-dark border border-[#e6e6db] dark:border-gray-700 rounded-xl p-0 overflow-hidden flex flex-col sm:flex-row h-full">
+                            <div class="p-6 flex-1 flex flex-col justify-center">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="material-symbols-outlined text-primary">trending_up</span>
+                                    <span class="text-xs font-bold text-green-600">+12.5% this year</span>
+                                </div>
+                                <h3 class="font-bold text-xl mb-2">Start SIP Today</h3>
+                                <p class="text-sm text-text-muted mb-6">Invest in top rated Mutual Funds starting at
+                                    just $10.</p>
+                                <a href="investments.html"
+                                    class="bg-black dark:bg-white text-white dark:text-black text-sm font-bold py-2 px-4 rounded-lg w-fit">
+                                    Explore Funds
+                                </a>
+                            </div>
+                            <div class="sm:w-2/5 min-h-[160px] bg-cover bg-center"
+                                data-alt="Stock market growth graph on a mobile screen"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtBHAqyUqvIhpX2N_7DmPsD6PXA05WWY9NQrv77q_Z0dfVgb9OGNZWxccxBP7hgd_KWXMku1t0408mGEJjcZY1yVVWb-j9_GTriLgf9CohJwAf-hfkr0yHuSEUG5KYLMpNZGObBDDWDKyRrDKoCVrEOjiTOoBRl-O1DebpLTTWJPrvmjS7C9lcViNOkwlhxDW1OEybH0TlTnkCUHiu1Rh8v_Y4d_tNuKNMJkxFxBPNxNF44vzQVOuuortWR1xGIN4hoHAoJukDe7s");'>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Offers Carousel -->
+                <section class="w-full px-4 lg:px-0">
+                    <h2 class="text-xl font-bold mb-4">Exclusive Offers for You</h2>
+                    <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar">
+                        <!-- Offer 1 -->
+                        <div
+                            class="min-w-[280px] md:min-w-[320px] bg-surface-light dark:bg-surface-dark rounded-lg border border-[#e6e6db] dark:border-gray-700 overflow-hidden">
+                            <div class="h-40 w-full bg-cover bg-center"
+                                data-alt="Person holding credit card near payment terminal"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbz8-MUB9dnI9aFAHqqjxgVrzQhnqdxx6jb-LCI6UjunnBdL64ayo6Opc1mmv4JDWCKkmjuAReGtj4VEtgA3rbSHixYWLWnQwIz9Lm7Ei8uRhxuhdI6hSsm61JxkOSiopVnES90CmuZG0VqGveQ8UiM6oewyuNWzhPUkxcQ4sYw4ujnry3zYst1MSOKARKz9GXNJLhSvGc2p343n20TNAnYS9zeAF0kuiWs3H038K9w53qL8NCAaNRPAMm1a6GdRWbDaeJtpjvyWs");'>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-lg mb-1">Pay Utility Bills</h4>
+                                <p class="text-sm text-text-muted mb-3">Get flat $5 cashback on bills &gt; $50</p>
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wider text-primary bg-black px-3 py-1.5 rounded">Claim
+                                    Offer</button>
+                            </div>
+                        </div>
+                        <!-- Offer 2 -->
+                        <div
+                            class="min-w-[280px] md:min-w-[320px] bg-surface-light dark:bg-surface-dark rounded-lg border border-[#e6e6db] dark:border-gray-700 overflow-hidden">
+                            <div class="h-40 w-full bg-cover bg-center"
+                                data-alt="Handshake representing successful business loan"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDa_CslsKnHyNWmsw5cf_EDC_MLVp9RzDzOPexuo9QARxwl1vk9sVOC87MfSmD6iBKqo0PPFCXzonQFWMQ7vJVToOP_6MzV6a8vGJIIbZtUPBtz_Suw19bPj3Pn5NpEN5ufV476dSLli9ExRdkb6t1gX_bcPUVDa4i-FXwyOw6Z8lp5BgPVPgEwAZUILo90EPoHfekoG3tpdAkIPO_NMe7G7zi_-hafbjFuoDlFEVw70SVK-5wKxceBhWgKQyCTss6AHFeakJuKhAY");'>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-lg mb-1">Business Loans</h4>
+                                <p class="text-sm text-text-muted mb-3">Interest rates starting at 9% p.a.</p>
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wider text-primary bg-black px-3 py-1.5 rounded">Check
+                                    Eligibility</button>
+                            </div>
+                        </div>
+                        <!-- Offer 3 -->
+                        <div
+                            class="min-w-[280px] md:min-w-[320px] bg-surface-light dark:bg-surface-dark rounded-lg border border-[#e6e6db] dark:border-gray-700 overflow-hidden">
+                            <div class="h-40 w-full bg-cover bg-center"
+                                data-alt="Traditional Indian oil lamps for festive season"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTrugHe8ZiKhqa9gaZthL20BBorTs4qqx2B3wsyv9pKUffWCqOzXrAzV6fZPGT70PwpMrD-bhUXp_9BZJPbX04WO0D0t5IV_w19mI5YV8ZvLcWpCrt65cn0DHmfbPWW9xvzkB_ImrRqq77PCEavTo5dH-m_GcriLD8BVUlpEF63wIfxDQRvm_s7MxO6rbIJmMTC664xyB7UjF3sXDQU2RNjeW9QFLG4mZrDnncAPgFwy5QYF_H8RBjBHQiCyMAAGUdheG7l5HPBTo");'>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold text-lg mb-1">Buy Digital Gold</h4>
+                                <p class="text-sm text-text-muted mb-3">Extra 2% gold on purchases today.</p>
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wider text-primary bg-black px-3 py-1.5 rounded">Buy
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Download App Banner -->
+                <section class="w-full px-4 lg:px-0 mt-8 mb-8">
+                    <div
+                        class="bg-[#f0f4ff] dark:bg-gray-800 rounded-2xl p-8 lg:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div class="max-w-lg">
+                            <h2 class="text-3xl font-extrabold mb-4">FinTechApp on the go.</h2>
+                            <p class="text-lg text-text-muted mb-8">Download our app for faster payments, exclusive
+                                mobile-only offers, and real-time tracking of your investments.</p>
+                            <div class="flex gap-4">
+                                <button
+                                    class="bg-black text-white px-5 py-2.5 rounded-lg flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                    <span class="material-symbols-outlined">android</span>
+                                    <div class="flex flex-col items-start leading-none">
+                                        <span class="text-[10px] font-medium uppercase">Get it on</span>
+                                        <span class="text-sm font-bold">Google Play</span>
+                                    </div>
+                                </button>
+                                <button
+                                    class="bg-black text-white px-5 py-2.5 rounded-lg flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                    <span class="material-symbols-outlined">ad_units</span>
+                                    <div class="flex flex-col items-start leading-none">
+                                        <span class="text-[10px] font-medium uppercase">Download on the</span>
+                                        <span class="text-sm font-bold">App Store</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
+                            <!-- Placeholder for Phone Mockup -->
+                            <div class="w-full h-full bg-contain bg-center bg-no-repeat"
+                                data-alt="Smartphone displaying finance app interface on screen"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxVLZOEF6VNoUr-6jAZ6qq5nNBPC2AsO-iYu8eR7tl02RXEHja8m4CB6yYTt1rrnKkgUFbprTkVLZxS4D2cVtZpYqcrFNkkAWWIRo1UwiJdD48O8v59NbWuvFc05P7-CdYv5h1_AFEvMgQKlk-C8YFRitPspVmXkvuPvqtdtzMyfKfLEK6-NL7u23HumnExqnQ0kmtAQVbBD2iqwtTH1pen-YD_JZWuuhNmjI2zk4UhnZ-bNVWhqphxv3FaaS_n_MxwYyORQ2yn_0");'>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-black border-t border-[#e6e6db] dark:border-gray-800 pt-16 pb-8 px-6 lg:px-10">
+            <div class="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2 lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-2 text-text-main dark:text-white mb-4">
+                        <div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-black font-bold">
+                            F
+                        </div>
+                        <h2 class="text-lg font-bold">FinTechApp</h2>
+                    </div>
+                    <p class="text-sm text-text-muted leading-relaxed mb-6">
+                        The most trusted financial services platform. Pay bills, recharge, book tickets, invest in
+                        stocks and mutual funds, and apply for loans - all in one place.
+                    </p>
+                    <div class="flex gap-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary transition-colors cursor-pointer">
+                            <span class="font-bold">fb</span>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary transition-colors cursor-pointer">
+                            <span class="font-bold">x</span>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-main dark:text-white hover:bg-primary transition-colors cursor-pointer">
+                            <span class="font-bold">in</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-text-main dark:text-white">Company</h4>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">About Us</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Careers</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Blog</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Press</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-text-main dark:text-white">Services</h4>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors"
+                        href="send_money.html">Recharge</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="send_money.html">Bill
+                        Payment</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors"
+                        href="investments.html">Investments</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="loans.html">Loans</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-bold text-text-main dark:text-white">Support</h4>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="support.html">Contact
+                        Us</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Terms of Use</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-sm text-text-muted hover:text-primary transition-colors" href="#">Sitemap</a>
+                </div>
+            </div>
+            <div
+                class="max-w-[1200px] mx-auto pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-[#8a8a60]">© 2023 FinTechApp Financial Services. All rights reserved.</p>
+                <div class="flex items-center gap-2 text-xs text-text-muted">
+                    <span class="material-symbols-outlined text-sm text-green-600">lock</span>
+                    <span>100% Secure Payments</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Notification Toggle
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+
+        if (notificationBtn && notificationDropdown) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('hidden');
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                    notificationDropdown.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
