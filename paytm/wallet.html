@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTechApp - Wallet &amp; Saved Cards</title>
+    <link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#222210", // Kept somewhat aligned with request but adjusted for dark mode contrast
+                        "neutral-850": "#1f1f1f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-neutral-900 dark:text-neutral-50 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Top Navigation -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md">
+            <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center gap-4">
+                    <div class="flex size-8 items-center justify-center rounded-lg bg-primary text-neutral-900">
+                        <span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight text-neutral-900 dark:text-white">FinTechApp</h1>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-bold text-neutral-900 dark:text-white hover:text-primary transition-colors"
+                        href="index.html">Consumer</a>
+                    <a class="text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                        href="business.html">Business</a>
+                    <a class="text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+                        href="investments.html">Invest</a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <button id="notificationBtn"
+                            class="flex items-center justify-center size-10 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors relative">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="absolute top-2 right-2 flex h-2 w-2">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                        </button>
+                        <!-- Notification Dropdown -->
+                        <div id="notificationDropdown"
+                            class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden z-[60] text-neutral-900">
+                            <div
+                                class="p-4 border-b border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
+                                <h4 class="font-bold dark:text-white">Notifications</h4>
+                                <button class="text-xs text-primary font-bold">Mark all as read</button>
+                            </div>
+                            <div class="max-h-96 overflow-y-auto">
+                                <div
+                                    class="p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 cursor-pointer border-b border-neutral-50 dark:border-neutral-800/50">
+                                    <p class="text-sm font-bold dark:text-white">Wallet Top-up Success</p>
+                                    <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Successfully added
+                                        $500 to your wallet from HDFC Bank.</p>
+                                    <p class="text-[10px] text-neutral-500 mt-2 uppercase font-bold">10 mins ago</p>
+                                </div>
+                            </div>
+                            <a href="#"
+                                class="block p-3 text-center text-sm font-bold bg-neutral-50 dark:bg-neutral-800 dark:text-white hover:text-primary transition-colors">See
+                                all notifications</a>
+                        </div>
+                    </div>
+                    <div class="size-10 overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-700">
+                        <img alt="User profile avatar showing a smiling person" class="h-full w-full object-cover"
+                            data-alt="User profile avatar showing a smiling person"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkow5j1qeHzG9A0Xl2tcY1keYPEnweqLL-qIs-6_fLtIrbaSRk4SPTGwmQxR6XJRNgxycceEEzu4L3JXCr45KG3n2xCWZe6SN1E3Gv36LKAUpV_KBImAKjIrh_Jn668so2F6x5PcwBdOzD6brZWNKlymioNz01ejxVWa5N4KfRcfKkaJexJOFSIDWhFznSct241fEfApVmdG1rywU_ZIjMJpOGmJVt51MEwwYrkO330GO8mkTqtLtCSbRjiDrzhXWikT-dErqme-Y" />
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <main class="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <!-- Page Heading & Actions -->
+                <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+                    <div>
+                        <h2 class="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white md:text-4xl">
+                            Payment Instruments</h2>
+                        <p class="mt-2 text-neutral-500 dark:text-neutral-400">Manage your wallet, bank accounts, and
+                            saved cards.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button
+                            class="inline-flex items-center gap-2 rounded-lg bg-neutral-100 px-4 py-2 text-sm font-bold text-neutral-900 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">visibility_off</span>
+                            Privacy Mode
+                        </button>
+                        <button
+                            class="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 text-sm font-bold text-white hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">add_link</span>
+                            Link Account
+                        </button>
+                    </div>
+                </div>
+                <!-- Dashboard Grid -->
+                <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+                    <!-- Left Column: Summary & Wallet (4 cols) -->
+                    <div class="flex flex-col gap-6 lg:col-span-4">
+                        <!-- Total Net Worth Widget -->
+                        <div
+                            class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-900 dark:ring-neutral-800">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Total Net
+                                    Worth</span>
+                                <span
+                                    class="flex items-center text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded">
+                                    <span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                                    +2.5%
+                                </span>
+                            </div>
+                            <div class="mt-2 flex items-baseline gap-2">
+                                <span class="text-3xl font-bold text-neutral-900 dark:text-white">$12,450.00</span>
+                            </div>
+                        </div>
+                        <!-- Wallet Card -->
+                        <div
+                            class="relative overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-900 dark:ring-neutral-800">
+                            <div class="h-32 w-full bg-cover bg-center"
+                                data-alt="Abstract gradient background with yellow and dark tones"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1pNjehKbory7mz1qFQz4uVWRNUCX1doZYNh2bnJGw9tidBWRXlZjHYP_pApa80I1hyi3bNQHDrZdjo_bvPjlOkdblx313lE_q13VEWaOQ8jloxtxNcvOIqpbXKNDygqFRxHZcdXcCVPQl3WVZF2HVXaPoejyIl6MuRWSIqnnwTgMBiCE3Nf4bzDcYtxyWuM0pC-WAxiOKrZgjmx8AFQiHTYV6KZu_vAJ54f7pwWPYw9W-k2Ir7r5P4IRMQuT6SZSXLdhUlXcsHi0');">
+                                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <p class="text-sm font-medium opacity-90">FinTechApp Wallet Balance</p>
+                                    <p class="text-2xl font-bold">$1,250.00</p>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div
+                                    class="mb-4 flex items-center justify-between text-sm text-neutral-500 dark:text-neutral-400">
+                                    <span>Available for payments</span>
+                                    <span class="material-symbols-outlined text-[20px]">info</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button
+                                        class="flex items-center justify-center gap-2 rounded-lg bg-primary py-2.5 text-sm font-bold text-neutral-900 hover:bg-primary/90 transition-colors">
+                                        <span class="material-symbols-outlined text-[20px]">add</span>
+                                        Add Money
+                                    </button>
+                                    <button
+                                        class="flex items-center justify-center gap-2 rounded-lg bg-neutral-100 py-2.5 text-sm font-bold text-neutral-900 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 transition-colors">
+                                        <span class="material-symbols-outlined text-[20px]">send</span>
+                                        Send
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Recent Transactions Teaser -->
+                        <div
+                            class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-neutral-200 dark:bg-neutral-900 dark:ring-neutral-800">
+                            <div class="mb-4 flex items-center justify-between">
+                                <h3 class="text-base font-bold text-neutral-900 dark:text-white">Recent Activity</h3>
+                                <a class="text-sm font-bold text-primary hover:underline" href="transactions.html">View
+                                    All</a>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <!-- Transaction Item -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex size-10 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
+                                            <span
+                                                class="material-symbols-outlined text-neutral-600 dark:text-neutral-400">shopping_bag</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-neutral-900 dark:text-white">Uber Ride</p>
+                                            <p class="text-xs text-neutral-500 dark:text-neutral-400">Today, 9:41 AM</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-bold text-neutral-900 dark:text-white">-$14.50</span>
+                                </div>
+                                <!-- Transaction Item -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex size-10 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
+                                            <span
+                                                class="material-symbols-outlined text-neutral-600 dark:text-neutral-400">coffee</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-neutral-900 dark:text-white">Starbucks</p>
+                                            <p class="text-xs text-neutral-500 dark:text-neutral-400">Yesterday, 4:20 PM
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-bold text-neutral-900 dark:text-white">-$5.75</span>
+                                </div>
+                                <!-- Transaction Item -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex size-10 items-center justify-center rounded-full bg-green-50 dark:bg-green-900/20">
+                                            <span
+                                                class="material-symbols-outlined text-green-600 dark:text-green-400">arrow_downward</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-neutral-900 dark:text-white">Refund</p>
+                                            <p class="text-xs text-neutral-500 dark:text-neutral-400">Oct 24, 10:00 AM
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-bold text-green-600 dark:text-green-400">+$25.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column: Bank Accounts & Cards (8 cols) -->
+                    <div class="flex flex-col gap-8 lg:col-span-8">
+                        <!-- Bank Accounts Section -->
+                        <section>
+                            <div class="mb-4 flex items-center justify-between">
+                                <h3 class="text-lg font-bold text-neutral-900 dark:text-white">Linked Bank Accounts</h3>
+                                <button
+                                    class="text-sm font-medium text-neutral-500 hover:text-primary dark:text-neutral-400 dark:hover:text-primary transition-colors">Manage</button>
+                            </div>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <!-- Bank Card 1 -->
+                                <div
+                                    class="group relative flex flex-col justify-between rounded-xl border border-neutral-200 bg-white p-5 transition-all hover:border-primary/50 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
+                                    <div class="mb-4 flex items-start justify-between">
+                                        <div
+                                            class="flex size-12 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                                            <span
+                                                class="material-symbols-outlined text-3xl text-blue-700 dark:text-blue-400">account_balance</span>
+                                        </div>
+                                        <span
+                                            class="flex size-6 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400">HDFC Bank
+                                            •• 4582</p>
+                                        <p class="text-lg font-bold text-neutral-900 dark:text-white">Savings Account
+                                        </p>
+                                    </div>
+                                    <div class="mt-4 border-t border-neutral-100 pt-3 dark:border-neutral-800">
+                                        <button class="text-sm font-bold text-primary hover:underline">Check
+                                            Balance</button>
+                                    </div>
+                                </div>
+                                <!-- Bank Card 2 -->
+                                <div
+                                    class="group relative flex flex-col justify-between rounded-xl border border-neutral-200 bg-white p-5 transition-all hover:border-primary/50 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
+                                    <div class="mb-4 flex items-start justify-between">
+                                        <div
+                                            class="flex size-12 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-900/20">
+                                            <span
+                                                class="material-symbols-outlined text-3xl text-indigo-700 dark:text-indigo-400">account_balance</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400">SBI Bank
+                                            •• 8821</p>
+                                        <p class="text-lg font-bold text-neutral-900 dark:text-white">Checking Account
+                                        </p>
+                                    </div>
+                                    <div class="mt-4 border-t border-neutral-100 pt-3 dark:border-neutral-800">
+                                        <button class="text-sm font-bold text-primary hover:underline">Check
+                                            Balance</button>
+                                    </div>
+                                </div>
+                                <!-- Add New Bank Button -->
+                                <button
+                                    class="flex min-h-[160px] flex-col items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-neutral-50 p-5 text-neutral-500 hover:border-primary hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800/50 dark:text-neutral-400 dark:hover:bg-neutral-800 transition-all">
+                                    <span class="material-symbols-outlined mb-2 text-3xl">add_circle</span>
+                                    <span class="text-sm font-bold">Add New Bank</span>
+                                </button>
+                            </div>
+                        </section>
+                        <!-- Saved Cards Section -->
+                        <section>
+                            <h3 class="mb-4 text-lg font-bold text-neutral-900 dark:text-white">Saved Cards</h3>
+                            <div
+                                class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+                                <!-- Card Item 1 -->
+                                <div
+                                    class="flex flex-col gap-4 border-b border-neutral-100 p-4 last:border-0 dark:border-neutral-800 sm:flex-row sm:items-center">
+                                    <div
+                                        class="flex h-10 w-14 items-center justify-center rounded bg-neutral-100 dark:bg-neutral-800">
+                                        <!-- Visa Logo Placeholder -->
+                                        <span class="font-bold italic text-blue-800 dark:text-blue-400">VISA</span>
+                                    </div>
+                                    <div class="flex flex-1 flex-col sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p class="text-base font-bold text-neutral-900 dark:text-white">HDFC Regalia
+                                            </p>
+                                            <p class="text-sm text-neutral-500 dark:text-neutral-400">Debit Card • Ends
+                                                in 5543</p>
+                                        </div>
+                                        <div class="mt-2 flex items-center gap-6 sm:mt-0">
+                                            <p class="text-sm text-neutral-500 dark:text-neutral-400">Expires 12/26</p>
+                                            <button class="text-neutral-400 hover:text-red-600 transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Item 2 -->
+                                <div
+                                    class="flex flex-col gap-4 border-b border-neutral-100 p-4 last:border-0 dark:border-neutral-800 sm:flex-row sm:items-center">
+                                    <div
+                                        class="flex h-10 w-14 items-center justify-center rounded bg-neutral-100 dark:bg-neutral-800">
+                                        <!-- Mastercard Logo Placeholder -->
+                                        <div class="flex">
+                                            <div class="size-4 rounded-full bg-red-500/80"></div>
+                                            <div class="-ml-2 size-4 rounded-full bg-yellow-500/80"></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-1 flex-col sm:flex-row sm:items-center sm:justify-between">
+                                        <div>
+                                            <p class="text-base font-bold text-neutral-900 dark:text-white">Axis
+                                                Flipkart</p>
+                                            <p class="text-sm text-neutral-500 dark:text-neutral-400">Credit Card • Ends
+                                                in 9901</p>
+                                        </div>
+                                        <div class="mt-2 flex items-center gap-6 sm:mt-0">
+                                            <p class="text-sm text-neutral-500 dark:text-neutral-400">Expires 09/25</p>
+                                            <button class="text-neutral-400 hover:text-red-600 transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Toggle Dark Mode Script (Optional, for preview purposes) -->
+    <script>
+        // Simple script to demonstrate theme support if needed, though strictly requested no JS logic for app functionality.
+        // This is purely for the viewer to verify the dark mode classes work.
+        // Uncomment to enable a toggle button or manual switching.
+        /*
+        const html = document.documentElement;
+        // html.classList.add('dark'); // Test dark mode
+        */
+    </script>
+    <script>
+        // Notification Toggle
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+
+        if (notificationBtn && notificationDropdown) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('hidden');
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                    notificationDropdown.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

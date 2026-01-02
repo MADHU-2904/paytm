@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTechApp Loans - Personal, Business &amp; Two Wheeler Loans</title>
+    <link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2c2c1a", // Slightly lighter than background-dark
+                        "text-main": "#181811",
+                        "text-inverse": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom range slider styling */
+        input[type=range] {
+            height: 6px;
+            -webkit-appearance: none;
+            margin: 10px 0;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #e5e7eb;
+            border-radius: 9999px;
+        }
+
+        .dark input[type=range]::-webkit-slider-runnable-track {
+            background: #4b5563;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #f2f20d;
+            /* Primary color */
+            border: 2px solid #181811;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main dark:text-text-inverse font-display overflow-x-hidden transition-colors duration-200">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        <!-- Top Navigation -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e6e6db] dark:border-b-[#33332a] bg-surface-light dark:bg-surface-dark px-6 py-3 lg:px-20">
+            <div class="flex items-center gap-4 text-text-main dark:text-white">
+                <div class="size-8 rounded bg-primary flex items-center justify-center text-black font-bold text-xl">
+                    F
+                </div>
+                <h2 class="text-text-main dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+                    FinTechApp Finance</h2>
+            </div>
+            <div class="hidden lg:flex flex-1 justify-end gap-8">
+                <nav class="flex items-center gap-9">
+                    <a class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="index.html">Consumer</a>
+                    <a class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="business.html">Business</a>
+                    <a class="text-text-main dark:text-gray-300 text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="investments.html">Invest</a>
+                </nav>
+                <div class="flex gap-3">
+                    <div class="relative">
+                        <button id="notificationBtn"
+                            class="flex items-center justify-center size-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-main dark:text-white relative">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="absolute top-2 right-2 flex h-2 w-2">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                        </button>
+                        <!-- Notification Dropdown -->
+                        <div id="notificationDropdown"
+                            class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-surface-dark rounded-xl shadow-2xl border border-[#e6e6db] dark:border-gray-700 overflow-hidden z-[60] text-text-main">
+                            <div
+                                class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                                <h4 class="font-bold">Notifications</h4>
+                                <button class="text-xs text-primary font-bold">Mark all as read</button>
+                            </div>
+                            <div class="max-h-96 overflow-y-auto">
+                                <div
+                                    class="p-4 hover:bg-[#f5f5f0] dark:hover:bg-gray-800 cursor-pointer border-b border-gray-50 dark:border-gray-700/50">
+                                    <p class="text-sm font-bold">Loan Approved!</p>
+                                    <p class="text-xs text-text-muted mt-1">Your personal loan application has been
+                                        approved. Check your dashboard.</p>
+                                    <p class="text-[10px] text-text-muted mt-2 uppercase font-bold">Just now</p>
+                                </div>
+                            </div>
+                            <a href="#"
+                                class="block p-3 text-center text-sm font-bold bg-[#f5f5f0] dark:bg-gray-800 hover:text-primary transition-colors">See
+                                all notifications</a>
+                        </div>
+                    </div>
+                    <a href="dashboard.html"
+                        class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-yellow-400 text-[#181811] text-sm font-bold leading-normal shadow-sm transition-colors">
+                        <span class="truncate">Dashboard</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Mobile Menu Icon -->
+            <div class="lg:hidden text-text-main dark:text-white">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </header>
+        <!-- Main Content Layout -->
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col w-full max-w-[1200px] px-4 md:px-10 flex-1">
+                    <!-- Hero Section -->
+                    <div class="mb-12">
+                        <div class="@container">
+                            <div class="flex flex-col gap-6 py-10 @[480px]:gap-8 @[864px]:flex-row items-center">
+                                <div class="flex flex-col gap-6 flex-1 @[864px]:justify-center">
+                                    <div class="flex flex-col gap-4 text-left">
+                                        <div
+                                            class="inline-flex items-center gap-2 self-start rounded-full bg-primary/20 px-3 py-1 text-xs font-bold text-text-main dark:text-primary uppercase tracking-wide">
+                                            <span class="material-symbols-outlined text-sm">verified</span>
+                                            Pre-approved Offers
+                                        </div>
+                                        <h1
+                                            class="text-text-main dark:text-white text-4xl font-black leading-[1.1] tracking-[-0.033em] @[480px]:text-5xl lg:text-6xl">
+                                            Unlock your financial potential today
+                                        </h1>
+                                        <h2
+                                            class="text-text-main/80 dark:text-gray-300 text-lg font-normal leading-relaxed max-w-xl">
+                                            Check your eligibility for pre-approved personal loans up to <span
+                                                class="font-bold text-text-main dark:text-white">$50,000</span> in just
+                                            10 minutes. Zero hidden fees.
+                                        </h2>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row gap-3 mt-2">
+                                        <button
+                                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-yellow-400 text-[#181811] text-base font-bold leading-normal shadow-md transition-all hover:scale-[1.02]">
+                                            <span class="truncate">Check Eligibility</span>
+                                        </button>
+                                        <button
+                                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white dark:bg-surface-dark border border-[#e6e6db] dark:border-[#444] text-text-main dark:text-white text-base font-bold leading-normal hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                            <span class="truncate">Learn More</span>
+                                        </button>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-4 text-xs font-medium text-gray-500 dark:text-gray-400 mt-2">
+                                        <span class="flex items-center gap-1"><span
+                                                class="material-symbols-outlined text-base">lock</span> 256-bit
+                                            Secure</span>
+                                        <span class="flex items-center gap-1"><span
+                                                class="material-symbols-outlined text-base">gpp_good</span> Regulated
+                                            Entity</span>
+                                    </div>
+                                </div>
+                                <div class="w-full flex-1 aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-gray-100 dark:bg-gray-800 relative group"
+                                    data-alt="Happy young couple looking at tablet screen discussing finances in a modern living room"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCb0tXuLn-lkq1vE1gnJf6aQK1bO30jBY9t6f3ReSdUdZV1iJsGbmDAauybSrN1sVv_e9ja5NRmfrZMXRosO1yGTD-BeqHoseT_vMY-RB8mfDVgVc2sOIag8-KaswFREEe6zk40CdJLarsMNRKpLR7LbfkihQmQhZzLtFvzM0LOOzKPt1fgIZASKDgkS64hoOnAhZe-HnMi3FYquyWhTB_DM6kH1YXnhORY3r2KXpKjsL_BEERmAW9ZBJTfDvIERu3t6Ds0ImBm_6Q"); background-size: cover; background-position: center;'>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                    <div
+                                        class="absolute bottom-6 left-6 right-6 p-4 bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-xl border border-white/20">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold">
+                                                    Current Rate</p>
+                                                <p class="text-2xl font-black text-text-main dark:text-white">11.99%
+                                                    <span class="text-sm font-medium text-gray-500">APR</span>
+                                                </p>
+                                            </div>
+                                            <div class="h-10 w-[1px] bg-gray-300 dark:bg-gray-600"></div>
+                                            <div>
+                                                <p class="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold">
+                                                    Approval</p>
+                                                <p class="text-2xl font-black text-text-main dark:text-white">Instant
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recommended Header -->
+                    <div
+                        class="flex items-center justify-between px-4 pb-6 pt-5 border-t border-[#e6e6db] dark:border-[#33332a]">
+                        <h2 class="text-text-main dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">
+                            Recommended For You</h2>
+                        <a class="text-sm font-bold text-text-main dark:text-primary hover:underline flex items-center gap-1"
+                            href="#">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                    </div>
+                    <!-- Pricing/Product Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-16">
+                        <!-- Card 1 -->
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-solid border-[#e6e6db] dark:border-[#33332a] bg-surface-light dark:bg-surface-dark p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-3">
+                                <span class="bg-primary text-[#181811] text-xs font-bold px-2 py-1 rounded">Best
+                                    Value</span>
+                            </div>
+                            <div class="flex flex-col gap-2 mb-2">
+                                <div
+                                    class="size-12 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-2">
+                                    <span class="material-symbols-outlined text-3xl">credit_card</span>
+                                </div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight">Platinum
+                                    Credit Card</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Premium rewards for your lifestyle.
+                                </p>
+                            </div>
+                            <div class="py-4 border-y border-dashed border-gray-200 dark:border-gray-700">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="text-text-main dark:text-white text-4xl font-black tracking-[-0.033em]">No
+                                        Fee</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm font-medium">Annual</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 flex-1">
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    5% Cashback on Travel
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Complimentary Lounge Access
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Purchase Protection
+                                </div>
+                            </div>
+                            <button
+                                class="w-full mt-4 cursor-pointer items-center justify-center rounded-lg h-11 px-4 bg-background-light dark:bg-background-dark border border-[#e6e6db] dark:border-[#444] text-text-main dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                        <!-- Card 2 -->
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-solid border-primary bg-surface-light dark:bg-surface-dark p-6 shadow-md relative overflow-hidden ring-1 ring-primary/50">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+                            <div class="flex flex-col gap-2 mb-2">
+                                <div
+                                    class="size-12 rounded-full bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 mb-2">
+                                    <span class="material-symbols-outlined text-3xl">payments</span>
+                                </div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight">Instant
+                                    Personal Loan</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Quick funds for your needs.</p>
+                            </div>
+                            <div class="py-4 border-y border-dashed border-gray-200 dark:border-gray-700">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="text-text-main dark:text-white text-4xl font-black tracking-[-0.033em]">11.99%</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm font-medium">APR
+                                        onwards</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 flex-1">
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Up to $50k Limit
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Instant Approval in 2 mins
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Flexible Tenure (12-60mo)
+                                </div>
+                            </div>
+                            <button
+                                class="w-full mt-4 cursor-pointer items-center justify-center rounded-lg h-11 px-4 bg-primary hover:bg-yellow-400 text-[#181811] text-sm font-bold transition-colors shadow-sm">
+                                Apply Now
+                            </button>
+                        </div>
+                        <!-- Card 3 -->
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-solid border-[#e6e6db] dark:border-[#33332a] bg-surface-light dark:bg-surface-dark p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex flex-col gap-2 mb-2">
+                                <div
+                                    class="size-12 rounded-full bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-2">
+                                    <span class="material-symbols-outlined text-3xl">storefront</span>
+                                </div>
+                                <h3 class="text-text-main dark:text-white text-lg font-bold leading-tight">Business Line
+                                    of Credit</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Working capital for growth.</p>
+                            </div>
+                            <div class="py-4 border-y border-dashed border-gray-200 dark:border-gray-700">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="text-text-main dark:text-white text-4xl font-black tracking-[-0.033em]">8.5%</span>
+                                    <span class="text-gray-500 dark:text-gray-400 text-sm font-medium">APR
+                                        onwards</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 flex-1">
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Limit up to $200k
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Interest only on usage
+                                </div>
+                                <div class="flex items-center gap-3 text-sm text-text-main dark:text-gray-300">
+                                    <span class="material-symbols-outlined text-primary"
+                                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    Revolving Credit Facility
+                                </div>
+                            </div>
+                            <button
+                                class="w-full mt-4 cursor-pointer items-center justify-center rounded-lg h-11 px-4 bg-background-light dark:bg-background-dark border border-[#e6e6db] dark:border-[#444] text-text-main dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Calculator Section -->
+                    <div class="mb-16">
+                        <div class="flex flex-col max-w-[960px] mx-auto">
+                            <h2
+                                class="text-text-main dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em] pb-6 pt-5">
+                                Calculate Your Borrowing Power</h2>
+                            <div
+                                class="rounded-2xl border border-[#e6e6db] dark:border-[#33332a] bg-surface-light dark:bg-surface-dark overflow-hidden shadow-lg flex flex-col lg:flex-row">
+                                <!-- Input Side -->
+                                <div
+                                    class="flex-1 p-6 md:p-8 flex flex-col gap-8 border-b lg:border-b-0 lg:border-r border-[#e6e6db] dark:border-[#33332a]">
+                                    <!-- Input 1 -->
+                                    <div class="flex flex-col gap-3">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-sm font-bold text-text-main dark:text-white">Required
+                                                Loan Amount</label>
+                                            <div
+                                                class="bg-background-light dark:bg-background-dark px-3 py-1 rounded text-sm font-bold border border-[#e6e6db] dark:border-[#444] text-text-main dark:text-white">
+                                                $15,000</div>
+                                        </div>
+                                        <input class="w-full" max="50000" min="1000" type="range" value="15000" />
+                                        <div class="flex justify-between text-xs text-gray-500">
+                                            <span>$1,000</span>
+                                            <span>$50,000</span>
+                                        </div>
+                                    </div>
+                                    <!-- Input 2 -->
+                                    <div class="flex flex-col gap-3">
+                                        <div class="flex justify-between items-center">
+                                            <label class="text-sm font-bold text-text-main dark:text-white">Monthly
+                                                Income</label>
+                                            <div
+                                                class="bg-background-light dark:bg-background-dark px-3 py-1 rounded text-sm font-bold border border-[#e6e6db] dark:border-[#444] text-text-main dark:text-white">
+                                                $4,500</div>
+                                        </div>
+                                        <input class="w-full" max="20000" min="2000" type="range" value="4500" />
+                                        <div class="flex justify-between text-xs text-gray-500">
+                                            <span>$2,000</span>
+                                            <span>$20,000+</span>
+                                        </div>
+                                    </div>
+                                    <!-- Input 3 -->
+                                    <div class="flex flex-col gap-3">
+                                        <label class="text-sm font-bold text-text-main dark:text-white">Loan
+                                            Tenure</label>
+                                        <div class="flex gap-2">
+                                            <button
+                                                class="flex-1 py-2 rounded border border-[#e6e6db] dark:border-[#444] text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 text-text-main dark:text-white transition-colors">12
+                                                Mo</button>
+                                            <button
+                                                class="flex-1 py-2 rounded bg-primary text-black font-bold text-sm shadow-sm ring-1 ring-black/5">24
+                                                Mo</button>
+                                            <button
+                                                class="flex-1 py-2 rounded border border-[#e6e6db] dark:border-[#444] text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 text-text-main dark:text-white transition-colors">36
+                                                Mo</button>
+                                            <button
+                                                class="flex-1 py-2 rounded border border-[#e6e6db] dark:border-[#444] text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 text-text-main dark:text-white transition-colors">48
+                                                Mo</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Result Side -->
+                                <div
+                                    class="w-full lg:w-[350px] bg-background-light dark:bg-[#1a1a0d] p-6 md:p-8 flex flex-col justify-center">
+                                    <div class="flex flex-col gap-6">
+                                        <div
+                                            class="flex flex-col gap-1 pb-4 border-b border-gray-200 dark:border-gray-700">
+                                            <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Est.
+                                                Monthly Payment</span>
+                                            <span
+                                                class="text-4xl font-black text-text-main dark:text-white tracking-tight">$684<span
+                                                    class="text-xl text-gray-400">/mo</span></span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <span
+                                                    class="text-xs text-gray-500 dark:text-gray-400 block mb-1">Interest
+                                                    Rate</span>
+                                                <span
+                                                    class="text-lg font-bold text-text-main dark:text-white">12.5%</span>
+                                            </div>
+                                            <div>
+                                                <span
+                                                    class="text-xs text-gray-500 dark:text-gray-400 block mb-1">Processing
+                                                    Fee</span>
+                                                <span
+                                                    class="text-lg font-bold text-text-main dark:text-white">$149</span>
+                                            </div>
+                                        </div>
+                                        <button
+                                            class="w-full flex items-center justify-center gap-2 rounded-lg h-12 px-6 bg-primary hover:bg-yellow-400 text-[#181811] text-base font-bold shadow-md transition-all mt-4">
+                                            Check Full Offer
+                                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                                        </button>
+                                        <p class="text-[10px] text-center text-gray-400">
+                                            *Rates are estimates based on average credit scores. Actual rates may vary.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comparison Section -->
+                    <div class="mb-20">
+                        <div
+                            class="flex items-center justify-between px-4 pb-6 border-b border-[#e6e6db] dark:border-[#33332a] mb-6">
+                            <h2
+                                class="text-text-main dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em]">
+                                Compare Products</h2>
+                        </div>
+                        <div class="overflow-x-auto rounded-xl border border-[#e6e6db] dark:border-[#33332a]">
+                            <table class="w-full text-left text-sm whitespace-nowrap">
+                                <thead
+                                    class="bg-gray-50 dark:bg-surface-dark border-b border-[#e6e6db] dark:border-[#33332a]">
+                                    <tr>
+                                        <th class="p-4 font-bold text-gray-500 dark:text-gray-400">Features</th>
+                                        <th class="p-4 font-bold text-text-main dark:text-white">Personal Loan</th>
+                                        <th class="p-4 font-bold text-text-main dark:text-white">Credit Card</th>
+                                        <th class="p-4 font-bold text-text-main dark:text-white">Line of Credit</th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    class="bg-surface-light dark:bg-background-dark divide-y divide-[#e6e6db] dark:divide-[#33332a]">
+                                    <tr>
+                                        <td class="p-4 font-medium text-gray-500 dark:text-gray-400">Interest Rate (APR)
+                                        </td>
+                                        <td class="p-4 font-bold text-text-main dark:text-white">11.99% - 24%</td>
+                                        <td class="p-4 font-bold text-text-main dark:text-white">14% - 29%</td>
+                                        <td class="p-4 font-bold text-text-main dark:text-white">8.5% - 18%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-medium text-gray-500 dark:text-gray-400">Approval Time</td>
+                                        <td class="p-4 text-text-main dark:text-white">Instant - 24 hrs</td>
+                                        <td class="p-4 text-text-main dark:text-white">Instant</td>
+                                        <td class="p-4 text-text-main dark:text-white">2-3 Days</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-medium text-gray-500 dark:text-gray-400">Max Limit</td>
+                                        <td class="p-4 text-text-main dark:text-white">Up to $50,000</td>
+                                        <td class="p-4 text-text-main dark:text-white">Based on Income</td>
+                                        <td class="p-4 text-text-main dark:text-white">Up to $200,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-4 font-medium text-gray-500 dark:text-gray-400">Repayment</td>
+                                        <td class="p-4 text-text-main dark:text-white">Fixed EMI</td>
+                                        <td class="p-4 text-text-main dark:text-white">Revolving (Min 5%)</td>
+                                        <td class="p-4 text-text-main dark:text-white">Revolving</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Footer / Trust -->
+                    <footer class="border-t border-[#e6e6db] dark:border-[#33332a] pt-12 pb-8">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                            <div class="flex flex-col gap-4">
+                                <h4 class="font-bold text-text-main dark:text-white">Company</h4>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="support.html">About Us</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="support.html">Careers</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="support.html">Press</a>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <h4 class="font-bold text-text-main dark:text-white">Products</h4>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="loans.html">Personal Loans</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="loans.html">Credit Cards</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="loans.html">Business Loans</a>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <h4 class="font-bold text-text-main dark:text-white">Support</h4>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="support.html">Help Center</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="support.html">Contact Us</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="support.html">Security</a>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <h4 class="font-bold text-text-main dark:text-white">Legal</h4>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Privacy
+                                    Policy</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Terms of
+                                    Service</a>
+                                <a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary"
+                                    href="#">Licensing</a>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-[#e6e6db] dark:border-[#33332a]">
+                            <p class="text-xs text-gray-400">© 2023 FinTechApp Finance. All rights reserved.</p>
+                            <div class="flex gap-4">
+                                <span
+                                    class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-text-main dark:hover:text-white">public</span>
+                                <span
+                                    class="material-symbols-outlined text-gray-400 cursor-pointer hover:text-text-main dark:hover:text-white">share</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Notification Toggle
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+
+        if (notificationBtn && notificationDropdown) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('hidden');
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                    notificationDropdown.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
