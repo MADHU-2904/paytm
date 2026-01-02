@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transactions History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #d1d5db;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#181811] font-display antialiased overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden w-64 flex-col border-r border-[#e6e6db] bg-white lg:flex shrink-0 z-20">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border border-[#e6e6db]" data-alt="App logo with abstract geometric shapes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCcJh5CXrU8Ye-lPadQzmE9njquzSRC1ghtoKcB_1J-vpUrEESWyKX6WMnp_UBQXvDUSe6Q9XA1JWI5MCUzw8vWiK7LDEPv4MTJARIg5wCeiCO8sd0_xOZ8ZVqYBwaxFye8CPrpOV6yvu7YY-Sa5nk5NJRfkc08SSgOSl754g6O2G-LxmjJv2pIe9KRVDbA6kadagqxcSu_TLrNZnaEVhr6Jz2XGVh5flSaMS2vUbBbGGuQDm24YnWOto9XMCbVIRcO6maUwOvdXRM");'></div>
+<h1 class="text-[#181811] text-lg font-bold leading-normal tracking-tight">Paytm Web</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">account_balance_wallet</span>
+<p class="text-[#181811] text-sm font-medium leading-normal">Wallet</p>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/20 border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined text-[#181811] fill-1">receipt_long</span>
+<p class="text-[#181811] text-sm font-bold leading-normal">History</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">credit_card</span>
+<p class="text-[#181811] text-sm font-medium leading-normal">Payments</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">person</span>
+<p class="text-[#181811] text-sm font-medium leading-normal">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">settings</span>
+<p class="text-[#181811] text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg h-10 px-4 bg-[#f5f5f0] hover:bg-[#ebebe5] text-[#181811] text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span class="truncate">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex flex-1 flex-col h-full overflow-hidden bg-background-light relative">
+<!-- Mobile Header -->
+<header class="flex lg:hidden items-center justify-between p-4 bg-white border-b border-[#e6e6db]">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 border border-[#e6e6db]" data-alt="App logo mobile" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCys4RI33g0yD-e1sV7lhykxyBunidfU_IBSBU4nw75f8fW_BKFQUYBOQJDGBbPK7hnjBBxnWGvUk-yiZZZdqXTV_CjYQdK4H7xAbVQsJJT43cYSaDWTeDbUojcEUqJeUjHZjvWavY4rGgYPeTC9UK3FKcbomSVcxWMhGG3ho16vuUOunH3zABfJJTRGAYODGqWAtLHzDORZGtq2MCHe3EpYyGusJRgqmV5A2hR-F_gj2uLsGUqAscP4wQUsRNCX0wOUIZzDBUFrGo");'></div>
+<span class="font-bold text-lg">History</span>
+</div>
+<button class="p-2 text-[#181811]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8 lg:p-12">
+<div class="max-w-6xl mx-auto flex flex-col gap-8">
+<!-- Page Heading -->
+<div class="flex flex-col gap-2">
+<h1 class="text-[#181811] text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Passbook &amp; History</h1>
+<p class="text-[#8a8a60] text-base font-normal leading-normal">View and manage all your financial transactions in one place.</p>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-[#e6e6db] shadow-sm">
+<div class="flex items-center gap-2 text-[#8a8a60]">
+<span class="material-symbols-outlined">shopping_bag</span>
+<p class="text-sm font-medium leading-normal uppercase tracking-wide">Total Spent This Month</p>
+</div>
+<div class="flex items-baseline gap-3">
+<p class="text-[#181811] tracking-tight text-3xl font-bold leading-tight">$1,240.50</p>
+<span class="flex items-center text-[#d32f2f] text-sm font-medium bg-red-50 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                                    12%
+                                </span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-[#e6e6db] shadow-sm">
+<div class="flex items-center gap-2 text-[#8a8a60]">
+<span class="material-symbols-outlined">account_balance</span>
+<p class="text-sm font-medium leading-normal uppercase tracking-wide">Total Received This Month</p>
+</div>
+<div class="flex items-baseline gap-3">
+<p class="text-[#181811] tracking-tight text-3xl font-bold leading-tight">$3,500.00</p>
+<span class="flex items-center text-[#078816] text-sm font-medium bg-green-50 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[16px] mr-1">trending_up</span>
+                                    5%
+                                </span>
+</div>
+</div>
+</div>
+<!-- Filters & Search Toolbar -->
+<div class="flex flex-col lg:flex-row gap-4 justify-between bg-white p-4 rounded-xl border border-[#e6e6db] shadow-sm">
+<!-- Search -->
+<div class="flex-1 max-w-lg">
+<label class="flex w-full items-center rounded-lg bg-[#f5f5f0] px-3 h-12 transition-all focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-1">
+<span class="material-symbols-outlined text-[#8a8a60]">search</span>
+<input class="w-full bg-transparent border-none text-[#181811] placeholder:text-[#8a8a60] focus:ring-0 text-base font-normal h-full ml-2" placeholder="Search by merchant, ID, or amount..."/>
+</label>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-2 lg:pb-0 items-center">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg border border-[#e6e6db] bg-white hover:bg-[#f5f5f0] px-4 transition-colors">
+<span class="material-symbols-outlined text-[#8a8a60] text-[20px]">calendar_today</span>
+<span class="text-[#181811] text-sm font-medium">Date Range</span>
+<span class="material-symbols-outlined text-[#181811] text-[20px]">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg border border-[#e6e6db] bg-white hover:bg-[#f5f5f0] px-4 transition-colors">
+<span class="material-symbols-outlined text-[#8a8a60] text-[20px]">category</span>
+<span class="text-[#181811] text-sm font-medium">Type</span>
+<span class="material-symbols-outlined text-[#181811] text-[20px]">expand_more</span>
+</button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-lg border border-[#e6e6db] bg-white hover:bg-[#f5f5f0] px-4 transition-colors">
+<span class="material-symbols-outlined text-[#8a8a60] text-[20px]">attach_money</span>
+<span class="text-[#181811] text-sm font-medium">Amount</span>
+<span class="material-symbols-outlined text-[#181811] text-[20px]">expand_more</span>
+</button>
+<button class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-dashed border-[#8a8a60] text-[#8a8a60] hover:text-[#181811] hover:border-[#181811] transition-all" title="Reset Filters">
+<span class="material-symbols-outlined text-[20px]">filter_alt_off</span>
+</button>
+</div>
+</div>
+<!-- Transaction Table -->
+<div class="bg-white rounded-xl border border-[#e6e6db] shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#f9f9f7] border-b border-[#e6e6db]">
+<tr>
+<th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#8a8a60]">Date &amp; Time</th>
+<th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#8a8a60]">Merchant</th>
+<th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#8a8a60]">Transaction ID</th>
+<th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#8a8a60]">Method</th>
+<th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#8a8a60]">Status</th>
+<th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-[#8a8a60] text-right">Amount</th>
+<th class="py-4 px-6 w-16"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#f0f0eb]">
+<!-- Row 1 -->
+<tr class="group hover:bg-[#ffffe0] transition-colors cursor-pointer">
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-[#181811] text-sm font-semibold">Oct 24, 2023</span>
+<span class="text-[#8a8a60] text-xs">10:42 AM</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-gray-100 bg-center bg-cover bg-no-repeat border border-gray-200" data-alt="Uber logo placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDl4Ip0lj9jzL1pf1Fa8rsFlG1F-1UalAJtpG2OAMx4WWUnY45A6nnz-PwDdZMwQwI6HpXJ6QSmYecEeZrZhDm7dyWEHvgoBnjcXvK29aJJfIyT1eysPKzHiTKVeIX75iTDC7gr4CHsLRXMA-UUBmg-IT_XLkzY_16zQB4OWa8WHoS7c02jo5DCKoYAQV4SBVI5b8WXUgh_hH2qZsaZeiY9-6oq0GDTZnbjF-VvU_XT1ZyNV9ddMomRWzS0k05SXgXkae-sRpfGj9E');"></div>
+<span class="text-[#181811] text-sm font-medium">Uber Technologies</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-sm text-[#5c5c4a] font-mono">#TXN88291</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#8a8a60] text-[18px]">credit_card</span>
+<span class="text-sm text-[#181811]">Debit Card ••4291</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#e6f4ea] text-[#137333]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                                                Success
+                                            </span>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-right">
+<span class="text-[#181811] text-base font-bold">-$14.50</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-[#ffffe0] transition-colors cursor-pointer">
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-[#181811] text-sm font-semibold">Oct 23, 2023</span>
+<span class="text-[#8a8a60] text-xs">09:15 AM</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold border border-blue-100">
+                                                    S
+                                                </div>
+<span class="text-[#181811] text-sm font-medium">Salary Deposit</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-sm text-[#5c5c4a] font-mono">#TXN99210</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#8a8a60] text-[18px]">account_balance</span>
+<span class="text-sm text-[#181811]">Direct Deposit</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#e6f4ea] text-[#137333]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                                                Success
+                                            </span>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-right">
+<span class="text-[#078816] text-base font-bold">+$3,500.00</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-[#ffffe0] transition-colors cursor-pointer">
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-[#181811] text-sm font-semibold">Oct 22, 2023</span>
+<span class="text-[#8a8a60] text-xs">08:30 PM</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-gray-100 bg-center bg-cover bg-no-repeat border border-gray-200" data-alt="Netflix logo placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWcPDy-9nsgGZX7tTRljZjexj8kevHTiNP4yLr9ADIUoN5IW15oKFIy8t61fso9v90lz9OO0Ghy5GQpS91R6cDth4N7fwhxE8PixXQBj8WJI753IGq-xlALO83dPqA4cnzDYzEOjQaXiwJiBweoDt9LVzzNVHs708qmPLDHC7IzIbTr8jkzn_kqsj8Cr1RtTMKJuIUmWpfkSv7kTGNCscjG0YLwQbA2Z2bzYI6kxbHBY6ui1_LJYrby46XURMCzTJ9sxXWSM6hhC0');"></div>
+<span class="text-[#181811] text-sm font-medium">Netflix Subscription</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-sm text-[#5c5c4a] font-mono">#TXN77233</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#8a8a60] text-[18px]">credit_card</span>
+<span class="text-sm text-[#181811]">Credit Card ••8821</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#fff8e1] text-[#f57f17]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f57f17]"></span>
+                                                Pending
+                                            </span>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-right">
+<span class="text-[#181811] text-base font-bold">-$15.99</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-[#ffffe0] transition-colors cursor-pointer">
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-[#181811] text-sm font-semibold">Oct 21, 2023</span>
+<span class="text-[#8a8a60] text-xs">02:15 PM</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-gray-100 bg-center bg-cover bg-no-repeat border border-gray-200" data-alt="Amazon logo placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfWKdsIeF3xEmnIx5GUEO1_4DnlFGgi3RcQnrPg4wJRnQMpT2dvuJ11RifnIh0h1dVdhxB3aIRlUxHMZZH58spMMS9w1-bROMC7FLvQuAu4eT_0oPHBaULfTNVly02k0eWe7izQQvsyraUGPDUhNl85Evgn9fy_7aLVnPkmRL5hJ0jYUDBzINzyuKg8Ge__RpK080UuHaMwoTCghqvIp3y3NylpQMJUdtyb5-ONgSqPUqzZbv08jDSwXjaSzc_vUGyiXcy1RoqE5M');"></div>
+<span class="text-[#181811] text-sm font-medium">Amazon Marketplace</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-sm text-[#5c5c4a] font-mono">#TXN44829</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#8a8a60] text-[18px]">account_balance_wallet</span>
+<span class="text-sm text-[#181811]">Wallet</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#fce8e6] text-[#c5221f]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#c5221f]"></span>
+                                                Failed
+                                            </span>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-right">
+<span class="text-[#181811] text-base font-bold">-$120.00</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">chevron_right</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-[#ffffe0] transition-colors cursor-pointer">
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-[#181811] text-sm font-semibold">Oct 20, 2023</span>
+<span class="text-[#8a8a60] text-xs">07:50 AM</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-green-50 flex items-center justify-center text-green-700 font-bold border border-green-100">
+                                                    S
+                                                </div>
+<span class="text-[#181811] text-sm font-medium">Starbucks Coffee</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-sm text-[#5c5c4a] font-mono">#TXN33129</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#8a8a60] text-[18px]">credit_card</span>
+<span class="text-sm text-[#181811]">Debit Card ••4291</span>
+</div>
+</td>
+<td class="py-4 px-6 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#e6f4ea] text-[#137333]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#137333]"></span>
+                                                Success
+                                            </span>
+</td>
+<td class="py-4 px-6 whitespace-nowrap text-right">
+<span class="text-[#181811] text-base font-bold">-$6.25</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="material-symbols-outlined text-[#8a8a60] group-hover:text-[#181811]">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-[#e6e6db] bg-[#f9f9f7] px-6 py-4">
+<p class="text-sm text-[#8a8a60]">
+                                Showing <span class="font-bold text-[#181811]">1</span> to <span class="font-bold text-[#181811]">5</span> of <span class="font-bold text-[#181811]">124</span> results
+                            </p>
+<div class="flex items-center gap-2">
+<button class="rounded-lg border border-[#e6e6db] bg-white px-3 py-1.5 text-sm font-medium text-[#8a8a60] hover:bg-[#f5f5f0] disabled:opacity-50" disabled="">
+                                    Previous
+                                </button>
+<button class="rounded-lg border border-[#e6e6db] bg-white px-3 py-1.5 text-sm font-medium text-[#181811] hover:bg-[#f5f5f0]">
+                                    Next
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

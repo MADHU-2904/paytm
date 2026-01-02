@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html class="light" lang="en">
 
@@ -277,4 +278,285 @@
     </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinTechApp Business - Payment Gateway, QR Code &amp; Business Loans</title>
+    <link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <link rel="shortcut icon" href="https://www.google.com/s2/favicons?domain=paytm.com&sz=32">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2a2a1a",
+                        "text-main": "#181811",
+                        "text-muted": "#8a8a60",
+                        "business-blue": "#002970",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Top Navigation Bar -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6e6db] dark:border-gray-700 bg-surface-light dark:bg-surface-dark px-6 py-3 lg:px-10 shadow-sm">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-text-main dark:text-white">
+                    <div
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-black font-bold text-xl">
+                        F
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight">FinTechApp</h1>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-8">
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="text-text-secondary dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
+                        href="index.html">Consumer</a>
+                    <a class="text-text-main dark:text-gray-200 text-sm font-bold border-b-2 border-primary"
+                        href="business.html">Business</a>
+                    <a class="text-text-secondary dark:text-gray-400 text-sm font-medium hover:text-primary transition-colors"
+                        href="investments.html">Invest</a>
+                </nav>
+                <div class="flex gap-3">
+                    <div class="flex gap-3">
+                        <div class="relative">
+                            <button id="notificationBtn"
+                                class="flex items-center justify-center rounded-full h-10 w-10 bg-[#f5f5f0] dark:bg-gray-800 text-text-main dark:text-white hover:bg-primary/20 transition-colors relative">
+                                <span class="material-symbols-outlined">notifications</span>
+                                <span class="absolute top-2 right-2 flex h-2 w-2">
+                                    <span
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                </span>
+                            </button>
+                            <!-- Notification Dropdown -->
+                            <div id="notificationDropdown"
+                                class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-surface-dark rounded-xl shadow-2xl border border-[#e6e6db] dark:border-gray-700 overflow-hidden z-[60] text-text-main">
+                                <div
+                                    class="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                                    <h4 class="font-bold">Notifications</h4>
+                                    <button class="text-xs text-primary font-bold">Mark all as read</button>
+                                </div>
+                                <div class="max-h-96 overflow-y-auto">
+                                    <div
+                                        class="p-4 hover:bg-[#f5f5f0] dark:hover:bg-gray-800 cursor-pointer border-b border-gray-50 dark:border-gray-700/50">
+                                        <p class="text-sm font-bold">Business Verified!</p>
+                                        <p class="text-xs text-text-muted mt-1">Your merchant account is now active.
+                                            Start accepting payments.</p>
+                                        <p class="text-[10px] text-text-muted mt-2 uppercase font-bold">Just now</p>
+                                    </div>
+                                </div>
+                                <a href="#"
+                                    class="block p-3 text-center text-sm font-bold bg-[#f5f5f0] dark:bg-gray-800 hover:text-primary transition-colors">See
+                                    all notifications</a>
+                            </div>
+                        </div>
+                        <a href="dashboard.html"
+                            class="flex items-center justify-center gap-2 rounded-full h-10 px-4 bg-primary text-black font-bold text-sm hover:brightness-105 transition-all outline outline-1 outline-black/10">
+                            <span>Merchant Login</span>
+                            <span class="material-symbols-outlined text-lg">login</span>
+                        </a>
+                    </div>
+                </div>
+        </header>
+
+        <main class="flex-1 flex flex-col items-center w-full">
+            <!-- Hero Section -->
+            <section class="w-full bg-business-blue text-white py-16 lg:py-24 px-6 lg:px-10 flex justify-center">
+                <div class="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl lg:text-6xl font-extrabold mb-6 leading-tight">Partner with us to grow your
+                            business</h2>
+                        <p class="text-xl text-blue-100 mb-10 leading-relaxed">Accept payments through any app, get
+                            instant settlements, and manage your inventory - all in one powerful dashboard.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <button
+                                class="bg-primary text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg">Get
+                                Started Now</button>
+                            <button
+                                class="bg-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-colors border border-white/20">Talk
+                                to Sales</button>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-8 border-white/10">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ0Py9p_xGMovYR1BP9R733IAy9BVtun9ZaDW4sLz51v7alUCzm2PCcDOYUvs7R2dmiEBplAIZM6PvpwuRKLM482xetbsPxv1Kvo_f6LprWJ94NvISGYfL4zvZS0qmT12pkpLJMIBv4pO14XTdzyUNXss48VtWF2PMpAWk92DiBd0GiqhT4PA0uX1vPAqxV8pJBY7BIr71rWrRBNtG52nfBwJd0CNTYLtTDFchXcAo8-YC1uJEmjJIFv0ThGUT1DlmaOU1cr1KZr0"
+                                alt="Merchant using FinTechApp QR to accept payment" class="w-full h-auto">
+                        </div>
+                        <!-- Floating Badge -->
+                        <div
+                            class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 text-black">
+                            <div class="bg-green-100 p-2 rounded-full">
+                                <span class="material-symbols-outlined text-green-700">task_alt</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Settlement</p>
+                                <p class="text-sm font-extrabold">Instant Done</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="max-w-[1200px] w-full py-20 px-6 lg:px-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-black mb-4">Everything you need to scales</h2>
+                    <p class="text-text-muted text-lg">Powerful tools built for merchants of all sizes.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-[#e6e6db] dark:border-gray-700 hover:border-primary transition-all group">
+                        <div
+                            class="size-14 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl">qr_code_2</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">All-in-One QR</h3>
+                        <p class="text-text-muted">Accept payments from any UPI app, wallet, or card with just one QR
+                            code. No extra fees.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-[#e6e6db] dark:border-gray-700 hover:border-primary transition-all group text-center">
+                        <div
+                            class="size-14 mx-auto rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl">point_of_sale</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Soundbox</h3>
+                        <p class="text-text-muted">Audio confirmation for every payment received. Never miss a payment
+                            notification again.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div
+                        class="bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-[#e6e6db] dark:border-gray-700 hover:border-primary transition-all group">
+                        <div
+                            class="size-14 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl">business_center</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Business Loans</h3>
+                        <p class="text-text-muted">Collateral-free loans up to $100,000 to expand your store. Quick
+                            approval process.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Merchant Dashboard Preview -->
+            <section class="w-full bg-[#fdfdf3] dark:bg-surface-dark/50 py-20 px-6 lg:px-10 flex justify-center">
+                <div class="w-full max-w-[1200px] flex flex-col lg:flex-row items-center gap-16">
+                    <div class="flex-1">
+                        <h2 class="text-3xl lg:text-5xl font-black mb-6">Manage business on your fingertips</h2>
+                        <ul class="space-y-6">
+                            <li class="flex items-start gap-4">
+                                <div class="bg-primary p-1 rounded-full"><span
+                                        class="material-symbols-outlined text-[16px]">check</span></div>
+                                <div>
+                                    <h4 class="font-bold">Real-time Analytics</h4>
+                                    <p class="text-text-muted text-sm">Track sales, customer visits and popular items.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="bg-primary p-1 rounded-full"><span
+                                        class="material-symbols-outlined text-[16px]">check</span></div>
+                                <div>
+                                    <h4 class="font-bold">Multi-store Management</h4>
+                                    <p class="text-text-muted text-sm">Manage all your outlets from a single login.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="bg-primary p-1 rounded-full"><span
+                                        class="material-symbols-outlined text-[16px]">check</span></div>
+                                <div>
+                                    <h4 class="font-bold">GST Invoicing</h4>
+                                    <p class="text-text-muted text-sm">Generate tax-compliant invoices instantly.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div
+                        class="flex-1 bg-white dark:bg-surface-dark rounded-3xl shadow-2xl p-4 overflow-hidden border border-gray-100 dark:border-gray-800">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxVLZOEF6VNoUr-6jAZ6qq5nNBPC2AsO-iYu8eR7tl02RXEHja8m4CB6yYTt1rrnKkgUFbprTkVLZxS4D2cVtZpYqcrFNkkAWWIRo1UwiJdD48O8v59NbWuvFc05P7-CdYv5h1_AFEvMgQKlk-C8YFRitPspVmXkvuPvqtdtzMyfKfLEK6-NL7u23HumnExqnQ0kmtAQVbBD2iqwtTH1pen-YD_JZWuuhNmjI2zk4UhnZ-bNVWhqphxv3FaaS_n_MxwYyORQ2yn_0"
+                            alt="Merchant Dashboard App Interface" class="w-full h-auto rounded-2xl">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-black border-t border-[#e6e6db] dark:border-gray-800 pt-16 pb-8 px-6 lg:px-10">
+            <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <h2 class="text-xl font-bold mb-2">FinTechApp for Business</h2>
+                    <p class="text-text-muted text-sm max-w-sm">The complete ecosystem for businesses to grow and manage
+                        payments.</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="text-sm font-bold hover:text-primary">Contact Sales</a>
+                    <a href="#" class="text-sm font-bold hover:text-primary">FAQs</a>
+                    <a href="#" class="text-sm font-bold hover:text-primary">Blog</a>
+                </div>
+            </div>
+            <div
+                class="max-w-[1200px] mx-auto pt-8 mt-12 border-t border-gray-100 dark:border-gray-800 flex justify-center">
+                <p class="text-xs text-text-muted">© 2023 FinTechApp Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Notification Toggle
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+
+        if (notificationBtn && notificationDropdown) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('hidden');
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+                    notificationDropdown.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+
+>>>>>>> 1e0a3fe (first)
 </html>

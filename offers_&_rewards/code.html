@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Offers &amp; Rewards</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2c2c16",
+                        "text-main": "#181811",
+                        "text-muted": "#8a8a60",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white font-display overflow-x-hidden transition-colors duration-200">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6e6db] dark:border-[#33331a] bg-surface-light dark:bg-surface-dark px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-text-main dark:text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-black">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Paytm Rewards</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Wallet</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Passbook</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f5f5f0] dark:bg-[#3a3a2a]">
+<div class="text-text-muted flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-main dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-text-muted px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search offers..." value=""/>
+</div>
+</label>
+<button class="md:hidden p-2 text-text-main dark:text-white">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile picture placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5BDWSo22O1RnZzx1406Hu8oh2Vga9r9eSm-EIcQKKBbUJkNFvNp_rr6dYtsNGrXszNDHgcaUqXmxNLG0WXczaD37q8zvTWdtm73UJVI0cS2Vx6eeiU2m4FCHSkTOA8f1O0Fujzz6E00XIGAtErp6VELOGyPFlxo-JcmqnwSkgQTGUMBQAiXrFhVWkcYkKxTU1ERGGUA1faGOR1-3fZV7n2nRVKpE028vA6nS3HFvmxy-fB4WH79l3m5sQ0AYMCSb48vVfimnFpf8");'></div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Side Navbar -->
+<aside class="hidden lg:flex flex-col w-72 border-r border-[#e6e6db] dark:border-[#33331a] bg-surface-light dark:bg-surface-dark p-4 sticky top-[65px] h-[calc(100vh-65px)] overflow-y-auto">
+<div class="flex flex-col gap-6">
+<div class="flex gap-3 items-center p-2 rounded-xl bg-[#f8f8f5] dark:bg-[#222210]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCk9tPaqiaBUNhlkmVoNL9BcBj19CjMtvajibDxC7Zp-mLJ4faOscnyLYrSnbmozkhSHHTvN2xkzfxO4MfoYQoASerQKOVszpNCRtDmW5iHH2HHLuDcJCBUsyrajDCD9wNVUjP39UTQ_vS7JXOjFLz5I1RjRuNs4kf0ldktli_YookAKGxYw7rcj4aelJZ-Uibn35ZjQtsqCNcq0gTLm4PPWZV_nCZcvGl-ARuE-irs9jPlb7XVWlLv_YcoXzR4rYVx-xzchJNP5-E");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-main dark:text-white text-base font-bold leading-normal">Alex Smith</h1>
+<p class="text-text-muted text-sm font-normal leading-normal">Silver Member</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] dark:hover:bg-[#3a3a2a] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-text-main dark:group-hover:text-white">dashboard</span>
+<p class="text-text-main dark:text-white text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/20 dark:bg-primary/10" href="#">
+<span class="material-symbols-outlined text-black dark:text-primary font-bold fill-1">local_offer</span>
+<p class="text-black dark:text-primary text-sm font-bold">My Offers</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] dark:hover:bg-[#3a3a2a] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-text-main dark:group-hover:text-white">history</span>
+<p class="text-text-main dark:text-white text-sm font-medium">Payment History</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] dark:hover:bg-[#3a3a2a] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-text-main dark:group-hover:text-white">credit_card</span>
+<p class="text-text-main dark:text-white text-sm font-medium">Linked Accounts</p>
+</a>
+<div class="my-2 border-t border-[#e6e6db] dark:border-[#33331a]"></div>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#f5f5f0] dark:hover:bg-[#3a3a2a] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-text-main dark:group-hover:text-white">settings</span>
+<p class="text-text-main dark:text-white text-sm font-medium">Settings</p>
+</a>
+</div>
+<div class="mt-auto bg-gradient-to-br from-gray-900 to-black rounded-xl p-4 text-white relative overflow-hidden group cursor-pointer">
+<div class="absolute -right-4 -top-4 bg-primary/20 w-24 h-24 rounded-full blur-xl group-hover:bg-primary/30 transition-all"></div>
+<h3 class="font-bold relative z-10">Refer &amp; Earn</h3>
+<p class="text-xs text-gray-300 mt-1 relative z-10">Invite friends and get $10 each.</p>
+<button class="mt-3 text-xs font-bold text-black bg-primary px-3 py-1.5 rounded relative z-10">Invite Now</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-4 md:p-8 overflow-x-hidden">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-8">
+<!-- Section 1: Hero Stats (ProfileStats) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Main Cashback Card (Primary Color Theme) -->
+<div class="flex flex-col justify-between p-6 rounded-xl bg-primary shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+<span class="material-symbols-outlined text-[180px]">savings</span>
+</div>
+<div>
+<p class="text-black/70 text-sm font-bold uppercase tracking-wider mb-1">Total Cashback Earned</p>
+<p class="text-black text-4xl font-extrabold tracking-tight">$1,240<span class="text-2xl opacity-60">.50</span></p>
+</div>
+<div class="flex items-center gap-2 mt-6">
+<span class="bg-black/10 p-1 rounded-full"><span class="material-symbols-outlined text-black text-sm">trending_up</span></span>
+<p class="text-black/80 text-sm font-medium">+$45 this month</p>
+</div>
+</div>
+<!-- Loyalty Points Card -->
+<div class="flex flex-col justify-between p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-[#e6e6db] dark:border-[#33331a] shadow-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider mb-1">Loyalty Points</p>
+<p class="text-text-main dark:text-white text-3xl font-bold">8,500 <span class="text-sm font-normal text-text-muted">pts</span></p>
+</div>
+<div class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400">diamond</span>
+</div>
+</div>
+<div class="mt-4">
+<button class="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                                    Redeem Points <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Milestone Tracker (ProgressBar) -->
+<div class="flex flex-col justify-between p-6 rounded-xl bg-surface-light dark:bg-surface-dark border border-[#e6e6db] dark:border-[#33331a] shadow-sm">
+<div>
+<div class="flex gap-6 justify-between items-center mb-2">
+<p class="text-text-main dark:text-white text-base font-bold leading-normal">Unlock $50 Bonus</p>
+<span class="px-2 py-0.5 rounded bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs font-bold">Active</span>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div>
+<span class="text-xs font-semibold inline-block text-primary uppercase">
+                                                Task Progress
+                                            </span>
+</div>
+<div class="text-right">
+<span class="text-xs font-semibold inline-block text-text-main dark:text-white">
+                                                75%
+                                            </span>
+</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-[#e6e6db] dark:bg-[#33331a]">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:75%"></div>
+</div>
+</div>
+<p class="text-text-muted text-sm font-normal leading-normal flex items-center gap-2">
+<span class="material-symbols-outlined text-base">info</span>
+                                    3 more payments to reach goal
+                                </p>
+</div>
+</div>
+</section>
+<!-- Section 2: Unclaimed Rewards (Scratch Cards) -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-text-main dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">Unclaimed Rewards</h2>
+<a class="text-sm font-bold text-text-muted hover:text-primary transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="aspect-[4/3] rounded-xl bg-gradient-to-br from-[#f2f20d] to-[#d9d900] p-1 cursor-pointer group hover:-translate-y-1 transition-transform duration-300 shadow-md">
+<div class="h-full w-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-opacity-20 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-black/10 group-hover:border-black/30">
+<div class="bg-white/90 p-3 rounded-full shadow-lg mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl text-yellow-600">redeem</span>
+</div>
+<p class="text-black font-bold text-sm">Tap to Reveal</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="aspect-[4/3] rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 p-1 cursor-pointer group hover:-translate-y-1 transition-transform duration-300 shadow-md">
+<div class="h-full w-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-opacity-20 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-white/20">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl text-white">mystery</span>
+</div>
+<p class="text-white font-bold text-sm">Mystery Box</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="aspect-[4/3] rounded-xl bg-surface-light dark:bg-surface-dark border-2 border-dashed border-[#e6e6db] dark:border-[#33331a] flex flex-col items-center justify-center text-center p-4">
+<span class="material-symbols-outlined text-text-muted text-3xl mb-2">lock</span>
+<p class="text-text-muted text-sm font-medium">Earn 50 pts to unlock</p>
+<div class="w-full h-1.5 bg-[#e6e6db] dark:bg-[#33331a] rounded-full mt-2 overflow-hidden">
+<div class="bg-text-muted h-full w-1/2"></div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="aspect-[4/3] rounded-xl bg-surface-light dark:bg-surface-dark border-2 border-dashed border-[#e6e6db] dark:border-[#33331a] flex flex-col items-center justify-center text-center p-4">
+<span class="material-symbols-outlined text-text-muted text-3xl mb-2">lock</span>
+<p class="text-text-muted text-sm font-medium">Make 1 payment</p>
+</div>
+</div>
+</section>
+<!-- Section 3: Merchant Deals -->
+<section>
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+<h2 class="text-text-main dark:text-white text-[22px] font-bold leading-tight">Top Picks for You</h2>
+<!-- Categories Tabs -->
+<div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="px-4 py-2 rounded-full bg-primary text-black text-sm font-bold whitespace-nowrap shadow-sm">All Offers</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-[#2c2c16] border border-[#e6e6db] dark:border-[#33331a] text-text-muted hover:text-text-main dark:hover:text-white text-sm font-medium whitespace-nowrap transition-colors">Food &amp; Dining</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-[#2c2c16] border border-[#e6e6db] dark:border-[#33331a] text-text-muted hover:text-text-main dark:hover:text-white text-sm font-medium whitespace-nowrap transition-colors">Travel</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-[#2c2c16] border border-[#e6e6db] dark:border-[#33331a] text-text-muted hover:text-text-main dark:hover:text-white text-sm font-medium whitespace-nowrap transition-colors">Shopping</button>
+<button class="px-4 py-2 rounded-full bg-white dark:bg-[#2c2c16] border border-[#e6e6db] dark:border-[#33331a] text-text-muted hover:text-text-main dark:hover:text-white text-sm font-medium whitespace-nowrap transition-colors">Bills</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Deal Card 1 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-[#e6e6db] dark:border-[#33331a] overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+<div class="h-32 bg-cover bg-center relative" data-alt="Uber specific abstract pattern background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAqWqYE8W4QpYfszoysKvf-uyIdXgMDIQcG0po9U6GgQLWjjvXFXZ-lpogPF7XsLkSI5NciDyUx431WRL3naidXo9oUnRCvQyfnHtOUJcQroRVSy3d-livmTkQS5PqW4iYRfadDG4BKCiHsc66-2-cVSfAmDeF_wytddoiC2xK4Bb72vZ8XtkhunvmEVR5lnfz073wu6Ryx7USyYERtfTSl4KYYB8HC21GWeWToNEOyyYO1_fl6bT8El4oSw5XUqrnauEZ5wd5zbZ0");'>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute bottom-[-20px] left-4 bg-white dark:bg-black p-1 rounded-lg shadow-sm border border-[#e6e6db] dark:border-[#33331a]">
+<div class="size-10 bg-black rounded flex items-center justify-center text-white font-bold text-xs">UBER</div>
+</div>
+<div class="absolute top-3 right-3 bg-white/90 dark:bg-black/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-black dark:text-white">
+                                        Expires in 2d
+                                    </div>
+</div>
+<div class="p-4 pt-8 flex-1 flex flex-col">
+<h3 class="font-bold text-text-main dark:text-white text-lg">Uber</h3>
+<p class="text-text-muted text-sm mb-4">Get 50% off on your next 3 intercity rides.</p>
+<div class="mt-auto">
+<div class="border-2 border-dashed border-[#e6e6db] dark:border-[#33331a] bg-[#f8f8f5] dark:bg-[#222210] rounded-lg p-2 flex justify-between items-center mb-3">
+<code class="text-sm font-bold text-text-main dark:text-white">UBER50NEW</code>
+<button class="text-primary dark:text-primary hover:text-yellow-600 font-bold text-xs uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                                            </button>
+</div>
+<button class="w-full py-2 bg-primary hover:bg-[#d9d900] text-black font-bold rounded-lg transition-colors">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Deal Card 2 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-[#e6e6db] dark:border-[#33331a] overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+<div class="h-32 bg-cover bg-center relative" data-alt="Food dining abstract background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJU__dPEorARYIoJwEYrfen8yjmjn3OyOKuQnop9u2MQbFMLnNpZP_6N2B6rWJao4ZSbZ2uwLmdyqjYOOSuLBSHqmrvFK2A0cc9MNx66U2ejDm_2C9RinJJ5YpV_FqeG1DnjpqysWYOC9RJqYmagwBOcSeleOKlqfX6wvEunqxiKXCgzrimO6ImI1_V6n6m3PBbZkItjA59XqHKGd20YfBrRLr2LKQXU2qMisTSC4HAi_V-T5lkqu3HFebkPxiS5e3aShK9515l_A");'>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute bottom-[-20px] left-4 bg-white dark:bg-black p-1 rounded-lg shadow-sm border border-[#e6e6db] dark:border-[#33331a]">
+<div class="size-10 bg-red-600 rounded flex items-center justify-center text-white font-bold text-xs italic">Zomato</div>
+</div>
+</div>
+<div class="p-4 pt-8 flex-1 flex flex-col">
+<h3 class="font-bold text-text-main dark:text-white text-lg">Zomato</h3>
+<p class="text-text-muted text-sm mb-4">Flat $5 Cashback on orders above $20.</p>
+<div class="mt-auto">
+<button class="w-full py-2 bg-white dark:bg-[#33331a] border border-primary text-black dark:text-primary hover:bg-primary hover:text-black font-bold rounded-lg transition-colors">Activate Offer</button>
+</div>
+</div>
+</div>
+<!-- Deal Card 3 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-[#e6e6db] dark:border-[#33331a] overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+<div class="h-32 bg-cover bg-center relative" data-alt="Shopping retail abstract background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6_0X5HeoQTlwZVMQZYEZWoxtdPOGprOhTQfEYQOakf_0pTDO99g7VIxBES9SjByPAZ_EaqEkBwgSWxpZr94r3q9krcuMowdw3MOLXXK4OFlLAdidB0852E2SZroZGEP7NW78yMz2UG9vBv_fkGl95rd34MFESGtW9CdOvq854xvQrgyMMUOlbh8dx9zNkNFnYdYDmHvK6LQeXCKspNHgZyrn0ay3DpWzUV_xG0G1Rw0iP9Cfg2tOx0jNSCGiYmzgMspEAF0Ypip8");'>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute bottom-[-20px] left-4 bg-white dark:bg-black p-1 rounded-lg shadow-sm border border-[#e6e6db] dark:border-[#33331a]">
+<div class="size-10 bg-black rounded flex items-center justify-center text-white font-bold text-xs">H&amp;M</div>
+</div>
+</div>
+<div class="p-4 pt-8 flex-1 flex flex-col">
+<h3 class="font-bold text-text-main dark:text-white text-lg">H&amp;M</h3>
+<p class="text-text-muted text-sm mb-4">10% Off on Winter Collection.</p>
+<div class="mt-auto">
+<div class="border-2 border-dashed border-[#e6e6db] dark:border-[#33331a] bg-[#f8f8f5] dark:bg-[#222210] rounded-lg p-2 flex justify-between items-center mb-3">
+<code class="text-sm font-bold text-text-main dark:text-white">HM10WINT</code>
+<button class="text-primary dark:text-primary hover:text-yellow-600 font-bold text-xs uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                                            </button>
+</div>
+<button class="w-full py-2 bg-primary hover:bg-[#d9d900] text-black font-bold rounded-lg transition-colors">Shop Now</button>
+</div>
+</div>
+</div>
+<!-- Deal Card 4 -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-[#e6e6db] dark:border-[#33331a] overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+<div class="h-32 bg-cover bg-center relative" data-alt="Mobile data recharge abstract background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKwg60ysMlkP2xD9RNzKhAe3HWvARs9nzU3F9JRlT6kmFBNjTAhpK5k9SbAM613kcqFh2wELmynpskfkK2VOOOwHBf0i-japdNo5kUy6u2fAjeSiLL4H28MNmjrjVydWEwRHqvpYSXKMKv2TDe2dl9fu2drjnexnS2vYDQcFNstiosIpdCu_woWxKvUqJPYb9za_joBHXmxJ8FPk-QZb4xnQ8jCwfC4M5X5bQNW3JK50m90LXw_Vt93yVrJUCXe5jWWreQY5EljQs");'>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute bottom-[-20px] left-4 bg-white dark:bg-black p-1 rounded-lg shadow-sm border border-[#e6e6db] dark:border-[#33331a]">
+<div class="size-10 bg-blue-500 rounded flex items-center justify-center text-white font-bold text-xs">Jio</div>
+</div>
+</div>
+<div class="p-4 pt-8 flex-1 flex flex-col">
+<h3 class="font-bold text-text-main dark:text-white text-lg">Jio Recharge</h3>
+<p class="text-text-muted text-sm mb-4">Win up to 100GB data voucher.</p>
+<div class="mt-auto">
+<button class="w-full py-2 bg-white dark:bg-[#33331a] border border-primary text-black dark:text-primary hover:bg-primary hover:text-black font-bold rounded-lg transition-colors">Recharge Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+</body></html>

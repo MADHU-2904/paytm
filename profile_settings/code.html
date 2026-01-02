@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Settings - Paytm Finance</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2f20d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222210",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2c2c1a",
+                        "text-main": "#181811",
+                        "text-muted": "#8a8a60",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6e6db] dark:border-[#383825] bg-surface-light dark:bg-surface-dark px-4 md:px-10 py-3 shadow-sm">
+<div class="flex items-center gap-4 md:gap-8">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="flex size-8 items-center justify-center rounded-lg bg-primary text-black">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">Paytm Finance</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64 group">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-transparent focus-within:border-primary/50 transition-colors">
+<div class="text-text-muted dark:text-[#bebe9e] flex border-none bg-[#f5f5f0] dark:bg-[#383825] items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-main dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f5f5f0] dark:bg-[#383825] focus:border-none h-full placeholder:text-text-muted dark:placeholder:text-[#bebe9e] px-4 pl-2 text-sm font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+<nav class="hidden md:flex items-center gap-6 lg:gap-9">
+<a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Payments</a>
+<a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Investments</a>
+<a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Help</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-[#f5f5f0] dark:hover:bg-[#383825] text-text-main dark:text-white transition-colors md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-surface-dark shadow-sm" data-alt="User avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeD8vtTJnMD_uV5XPDgZqvD7bHgXzU41IrX8qw24xhpz3TILywgn2vZsQFXQnNYoD0cvAfd31nUBpY5XihEl1J9kkSv-M7y8HMVWrTD3-eirAZNdxaGYdiHN7_DXzpwkf5oVh5F7Qfq5zp7yEOr4KIaAKjD0e7Qp9HOaGhjc7n21j_mukvXseXMuQwearpYwEx4U4adZILqo4UdQWkHgM6oVM7vNYvAgFtO_CNGtB0bgqjzKHRenKoBXxy_Zih3gHdaIFUN5eKUqs");'></div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-1 flex-col md:flex-row max-w-[1440px] mx-auto w-full px-4 md:px-6 lg:px-8 py-6 md:py-10 gap-6">
+<!-- Sidebar Navigation -->
+<aside class="w-full md:w-64 lg:w-72 flex-shrink-0">
+<div class="flex flex-col gap-4 bg-surface-light dark:bg-surface-dark rounded-xl p-4 md:p-6 shadow-sm border border-[#e6e6db] dark:border-[#383825]">
+<!-- Sidebar User Info -->
+<div class="flex gap-3 items-center pb-4 border-b border-[#f5f5f0] dark:border-[#383825]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="User avatar thumbnail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2SBfcGITK0h8QPwJPqqTFlTsI61erc6RK8pvK2fiVrjzflAuCjSSpfmmAWhsBPeb0zfkFWx9BQAM--IMFLGuzMJfJ38qzzhcqC5KHkS_lOF86-uka6Yg28rSCooELS5dm22djcMxhvZNZUgMcIqofRQB6amXWnh2jGByaw0AXEXdG4AF92wjwcuWe8buRXu6ZUR6yFetBosUkgfDy9eUAww_svhJKJ1p_AuAVu5m9F9HcGvzRBgkjPb85aJ7Ord2G1CdJafi1yfU");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-main dark:text-white text-base font-bold leading-normal">John Doe</h1>
+<p class="text-text-muted dark:text-[#bebe9e] text-xs font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-green-600 text-[14px] filled">verified</span>
+                            KYC Verified
+                        </p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-black transition-colors group" href="#">
+<span class="material-symbols-outlined icon-filled" style="font-variation-settings: 'FILL' 1;">person</span>
+<p class="text-sm font-bold leading-normal">Edit Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-main dark:text-white hover:bg-[#f5f5f0] dark:hover:bg-[#383825] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted dark:text-[#bebe9e] group-hover:text-text-main dark:group-hover:text-white transition-colors">shield</span>
+<p class="text-sm font-medium leading-normal">Security &amp; Privacy</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-main dark:text-white hover:bg-[#f5f5f0] dark:hover:bg-[#383825] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted dark:text-[#bebe9e] group-hover:text-text-main dark:group-hover:text-white transition-colors">credit_card</span>
+<p class="text-sm font-medium leading-normal">Payment Methods</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-main dark:text-white hover:bg-[#f5f5f0] dark:hover:bg-[#383825] transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted dark:text-[#bebe9e] group-hover:text-text-main dark:group-hover:text-white transition-colors">notifications</span>
+<p class="text-sm font-medium leading-normal">Notifications</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-main dark:text-white hover:bg-[#f5f5f0] dark:hover:bg-[#383825] transition-colors group mt-4" href="#">
+<span class="material-symbols-outlined text-red-500">logout</span>
+<p class="text-sm font-medium leading-normal text-red-500">Log Out</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-[#e6e6db] dark:border-[#383825] overflow-hidden">
+<!-- Page Heading -->
+<div class="p-6 border-b border-[#f5f5f0] dark:border-[#383825]">
+<div class="flex flex-col gap-1">
+<h2 class="text-text-main dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Personal Information</h2>
+<p class="text-text-muted dark:text-[#bebe9e] text-base font-normal leading-normal">Manage your personal details and KYC status</p>
+</div>
+</div>
+<div class="flex flex-col p-6 gap-8">
+<!-- Profile Header / Avatar Upload -->
+<div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start p-4 bg-[#f8f8f5] dark:bg-[#222210] rounded-xl border border-[#e6e6db] dark:border-[#383825]">
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-28 h-28 ring-4 ring-white dark:ring-[#383825]" data-alt="Large user profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVQFbMDy5YTKNUT0xTopKECBPu-ooZZEqa1aVUCrXlRb6n0cfqYhmQzW4yH-89HDKmKygQeakLxCWcmdT4_5zKKTLBlaC0vOSvjcSJmTbyOCx6h1hQuBe6bV09AucE6XN5W_hWrWlb6loRnmUJz8Z7V2w6-98QaPnxqw8bymrrwtiPFOnID9pTNYBLJPR60rap5m2RWp5xXFhiDu4r_xHOt7jZs6kpX6Pf0vAdiVNA7dLtD0bB5ad_sbZYkmqMN_voX7KqCZVDolo");'></div>
+<div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<div class="flex flex-col gap-4 flex-1 w-full text-center sm:text-left">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-center sm:justify-start gap-2">
+<h3 class="text-text-main dark:text-white text-xl font-bold leading-tight">John Doe</h3>
+<span class="bg-primary/20 text-text-main dark:text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">KYC Verified</span>
+</div>
+<p class="text-text-muted dark:text-[#bebe9e] text-sm">Update your photo and personal details here.</p>
+</div>
+<div class="flex flex-wrap gap-3 justify-center sm:justify-start">
+<button class="flex items-center justify-center rounded-lg px-4 py-2 bg-primary text-black text-sm font-bold hover:bg-yellow-400 transition-colors">
+                                Upload New Photo
+                            </button>
+<button class="flex items-center justify-center rounded-lg px-4 py-2 bg-white dark:bg-[#383825] border border-[#e6e6db] dark:border-[#4a4a35] text-text-main dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-[#444430] transition-colors">
+                                Delete
+                            </button>
+</div>
+</div>
+</div>
+<!-- Form Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="flex flex-col gap-2">
+<span class="text-text-main dark:text-white text-sm font-bold">Full Name</span>
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="John Doe"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-text-main dark:text-white text-sm font-bold">Date of Birth</span>
+<div class="relative">
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="12/05/1990"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none">calendar_today</span>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-text-main dark:text-white text-sm font-bold">Email Address</span>
+<div class="relative">
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="email" value="john.doe@example.com"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-green-600 pointer-events-none" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-text-main dark:text-white text-sm font-bold">Phone Number</span>
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="tel" value="+1 (555) 000-0000"/>
+</label>
+<label class="flex flex-col gap-2 md:col-span-2">
+<span class="text-text-main dark:text-white text-sm font-bold">Address</span>
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="123 Financial District, Suite 400"/>
+</label>
+<div class="grid grid-cols-2 gap-6 md:col-span-2">
+<label class="flex flex-col gap-2">
+<span class="text-text-main dark:text-white text-sm font-bold">City</span>
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="New York"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-text-main dark:text-white text-sm font-bold">Zip Code</span>
+<input class="form-input w-full rounded-lg border border-[#e6e6db] dark:border-[#4a4a35] bg-white dark:bg-[#222210] px-4 py-3 text-text-main dark:text-white placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="text" value="10001"/>
+</label>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex items-center justify-end gap-4 pt-6 mt-2 border-t border-[#f5f5f0] dark:border-[#383825]">
+<button class="px-6 py-2.5 rounded-lg text-text-main dark:text-white font-bold hover:bg-[#f5f5f0] dark:hover:bg-[#383825] transition-colors">
+                        Cancel
+                    </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-black font-bold hover:bg-yellow-400 transition-colors shadow-sm">
+                        Save Changes
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>
